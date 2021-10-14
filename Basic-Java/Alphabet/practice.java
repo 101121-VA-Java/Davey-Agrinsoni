@@ -5,18 +5,6 @@ public class practice{
 		System.out.print((char)(alp+i));
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
