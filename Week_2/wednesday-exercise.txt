@@ -1,0 +1,15 @@
+Go line by line, and explain what's happening in each line.
+
+int score = 80; // A variable of type int and of name score is declared and is assigned a value of 80;
+
+String result; // Creates an object of the String class named result
+
+if (score == 80) { //Conditional Statment which uses the boolean operator "==" to see if the values in the primitive variable score matches the value 80. If the values are the same the statement returns true so the program steps into the conditional. If False the program does not run the contents.
+	result = "You passed!"; //Passes the string "You passed!" into the String object we created at the start of the porgram. If the program stepped into this conditional statement it will skip over the remaining conditionals.
+} else if (score > 80) { //If the contents of score variable are greater than the number 80 the program steps into the following line.
+	result = "You did great!"; //Passes the string "You did great!" into the String object we created at the start of the porgram.
+} else { //If both of the two previous conditionals are false the program will run the contents of this statement.
+	result = "You did not pass. Try again!"; //Passes the string "You did not pass.  Try again!" into the string object we made at the beginning of the program. Since this is the final conditional the programs moves on to the remaining code without checking for any other contions.
+}
+
+System.out.println(result); // Prints out the contents of the string Object, which we assigned based on the conditionals above, to the system.
