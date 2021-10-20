@@ -1,11 +1,16 @@
 package com.revature.models;
 
+import java.util.Arrays;
+
 public class User {
 
 	// instance variable
 	private String username;
 	private String password;
 	private int age;
+	
+	// Each user can only have up to 3 tasks
+	private Task task;
 
 	// static variable
 	public static int numberOfUsers;
@@ -71,9 +76,17 @@ public class User {
 		System.out.println("I'm an instance method!");
 	}
 
+	public Task getTask() {
+		return task;
+	}
+	
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", age=" + age + "]";
+		return "User [username=" + username + ", password=" + password + ", age=" + age + ", task=" + task + "]";
 	}
 
 	@Override
@@ -82,6 +95,7 @@ public class User {
 		int result = 1;
 		result = prime * result + age;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((task == null) ? 0 : task.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -102,6 +116,11 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (task == null) {
+			if (other.task != null)
+				return false;
+		} else if (!task.equals(other.task))
+			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -109,5 +128,7 @@ public class User {
 			return false;
 		return true;
 	}
+
+	
 
 }
