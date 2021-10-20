@@ -3,6 +3,7 @@ package com.revature.models;
 import java.time.LocalDate;
 
 public class Task {
+	
 	//Instance Variable
 	private String name;
 	private LocalDate date = LocalDate.now();
@@ -35,6 +36,10 @@ public class Task {
 	
 	public String toString() {
 		return "Task : " + name + " Due date: " + date;
+	}
+	
+	public Task getATask() {
+		return new Task();
 	}
 
 	@Override
