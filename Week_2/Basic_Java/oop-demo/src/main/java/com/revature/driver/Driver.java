@@ -56,6 +56,12 @@ public class Driver {
 		it.stress();
 		
 		System.out.println(it);
+		
+		BoringTask bt = new BoringTask("Cleaning", LocalDate.now());
+		
+		bt.procastinate();
+		
+		System.out.println(bt);
 	}
 
 
