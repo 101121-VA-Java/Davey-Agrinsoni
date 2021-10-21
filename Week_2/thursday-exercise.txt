@@ -1,0 +1,51 @@
+public static void main(String[] args) { instantialization of a main method which is static, has a void return type and can take in arguments which will be placed into a String Array called args
+	String[] foodTypes = getFoodTypes(); //Declaring and instantializing the foodTypes string array by calling upon the getFoodTypes() method . 
+	String myType = foodTypes[2]; //Declaring the String object myType which will be instantializing to contain the string at position 3 of the foodTypes array.
+	String[] foodsOfMyType = getFoodsByType(myType); //Declaring the String Array foodofMyType which inputs the parameter String myType into the method call of getFoodsByType.
+	
+	for (String food : foodsOfMyType) { //Enhanced for loop conditional statement which will run until it itterates through each cell of the String Array.  
+		System.out.println(food); //During each itteration of the loop the String food is reassigned to the value of the current cell in the string array foodsOfMyType and its' contents are printed out to the system on a new line. 
+	} //Loop ends when it has gone through all the cells in the foodsOfMyType array
+} //End of the main method
+
+public static String[] getFoodTypes() { //Creation of the method getFoodTypes which is public and static and returns a String Array.
+	String[] foodTypes = {"breakfast","lunch","dinner","dessert","snack"}; //Creates an object of type String Array[] named foodTypes which contains 5 strings
+	return foodTypes; //returns the foodTypes string array.
+} //End of the getFoodTypes method
+
+public static String[] getFoodsByType(String type) { //Creation of the getFoodsByType method which has an access modifer public, is static, returns a String Array and takes in the parameter of a String which is declared as type.
+	String[] foods = new String[3]; // Creates a new String Array object declared as foods which has a max size of 3.
+
+	switch(type) { //Switch Conditional Statement which takes in the String type and compares its' contents with the cases below.
+	case "breakfast": //If the String type contains the string "breakfast" the program steps into the case and executes the contents.
+		foods[0] = "pancakes"; //Instantializes the contents of foods[0] to "pancakes" from "null"
+		foods[1] = "cereal"; //Instantializes the contents of foods[1] to "cereal" from "null"
+		foods[2] = "omelette"; //Instantializes the contents of foods[2] to "omelette" from "null"
+		break; //Steps out of the conditional loop
+	case "lunch": //If the String type contains the string "lunch" the program steps into the case and executes the contents.
+		foods[0] = "sandwich"; //Instantializes the contents of foods[0] to "sandwich" from "null"
+		foods[1] = "salad"; //Instantializes the contents of foods[1] to "salad" from "null"
+		foods[2] = "soup"; //Instantializes the contents of foods[2] to "soup" from "null"
+		break; //Steps out of the conditional loop
+	case "dinner": //If the String type contains the string "dinner" the program steps into the case and executes the contents.
+		foods[0] = "curry"; //Instantializes the contents of foods[0] to "curry" from "null"
+		foods[1] = "stir fry"; //Instantializes the contents of foods[1] to "stir fry" from "null"
+		foods[2] = "burger"; //Instantializes the contents of foods[2] to "burger" from "null"
+		break; //Steps out of the conditional loop
+	case "dessert": //If the String type contains the string "dessert" the program steps into the case and executes the contents.
+		foods[0] = "cake"; //Instantializes the contents of foods[0] to "cake" from "null"
+		foods[1] = "ice cream"; //Instantializes the contents of foods[1] to "ice cream" from "null"
+		foods[2] = "candy"; //Instantializes the contents of foods[2] to "candy" from "null"
+		break; //Steps out of the conditional loop
+	case "snack": //If the String type contains the string "snack" the program steps into the case and executes the contents.
+		foods[0] = "chips"; //Instantializes the contents of foods[0] to "chips" from "null"
+		foods[1] = "apple"; //Instantializes the contents of foods[1] to "apple" from "null"
+		foods[2] = "samosa"; //Instantializes the contents of foods[2] to "samosa" from "null"
+		break; //Steps out of the conditional loop
+	default: //If the String type does not match any of the previous cases the program will step into this instead.
+		// add your own ----> Wasn't sure if you wanted us to change this or say it's a comment that the program skips over but I figured I'd leave it alone.
+		break; //Steps out of the conditional loop with the food[] never having been assinged specific values so by default it shall contain {"null", "null", "null"}
+	} // End of the Switch conditional loop
+
+	return foods; //returns the String[] foods which has a maximum size of 3 and it's contents were assigned by the Switch.
+} //End of the getFoodsByType method
