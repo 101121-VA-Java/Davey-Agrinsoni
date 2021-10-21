@@ -1,10 +1,10 @@
 public static void main(String[] args) { instantialization of a main method which is static, has a void return type and can take in arguments which will be placed into a String Array called args
 	String[] foodTypes = getFoodTypes(); //Declaring and instantializing the foodTypes string array by calling upon the getFoodTypes() method . 
-	String myType = foodTypes[2]; //Declaring the String object myType which will be instantializing to contain the string at position 3 of the foodTypes array.
+	String myType = foodTypes[2]; //Declaring the String object myType which will be instantializing to contain the string at position 3 of the foodTypes array which is "dinner".
 	String[] foodsOfMyType = getFoodsByType(myType); //Declaring the String Array foodofMyType which inputs the parameter String myType into the method call of getFoodsByType.
 	
 	for (String food : foodsOfMyType) { //Enhanced for loop conditional statement which will run until it itterates through each cell of the String Array.  
-		System.out.println(food); //During each itteration of the loop the String food is reassigned to the value of the current cell in the string array foodsOfMyType and its' contents are printed out to the system on a new line. 
+		System.out.println(food); //During each itteration of the loop the String food is reassigned to the value of the current cell in the string array foodsOfMyType and its' contents are printed out to the system on a new line. In this case is shall print out the strings. "curry" "stir fry" and "burger" on their own lines 
 	} //Loop ends when it has gone through all the cells in the foodsOfMyType array
 } //End of the main method
 
@@ -27,7 +27,7 @@ public static String[] getFoodsByType(String type) { //Creation of the getFoodsB
 		foods[1] = "salad"; //Instantializes the contents of foods[1] to "salad" from "null"
 		foods[2] = "soup"; //Instantializes the contents of foods[2] to "soup" from "null"
 		break; //Steps out of the conditional loop
-	case "dinner": //If the String type contains the string "dinner" the program steps into the case and executes the contents.
+	case "dinner": //If the String type contains the string "dinner" the program steps into the case and executes the contents. This is what happens with the main method in this specifc use of the program. 
 		foods[0] = "curry"; //Instantializes the contents of foods[0] to "curry" from "null"
 		foods[1] = "stir fry"; //Instantializes the contents of foods[1] to "stir fry" from "null"
 		foods[2] = "burger"; //Instantializes the contents of foods[2] to "burger" from "null"
