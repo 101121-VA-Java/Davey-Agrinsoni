@@ -34,9 +34,20 @@ public class Calculator {
 	}
 	
 	public boolean isPrime(int i) {
-		//Logic 
-		return true;
+		//Logic
+		boolean b = false; 
+		int j = i /2;
+		if(i <= 1) { //0 and 1 are not considered Prime. Negatives are also not prime.
+			return b; 
+		}
+		for(int l = 2; l <= j; l++) {
+			if(i % l == 0 ) {
+				b = false;
+			}
+			else {
+				b = true;
+			}
+		}
+		return b;
 	}
-	
-	
 }
