@@ -29,7 +29,13 @@ public class Calculator {
 	}
 	
 	public boolean isPrime(int i) {
-		//Logic
+		//Logic 
 		return true;
 	}
+	
+	public void throwException() throws Exception {
+		throw new Exception();
+	}
+	
+	
 }

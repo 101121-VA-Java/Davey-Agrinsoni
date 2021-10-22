@@ -62,8 +62,55 @@ public class CalculatorTest {
 
 	@Order(3)
 	@Test
+	public void subFiveAndTwo() {
+		double expected = 3;
+		double actual = cal.subtract(5,2);
+		assertEquals(expected, actual);
+	}
+
+	@Order(4)
+	@Test
+	public void subMinusThreeAndMinusTwo() {
+		double expected = -1;
+		double actual = cal.subtract(-3,-2);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(5)
+	@Test
+	public void mulFourAndFour() {
+		double expected = 16;
+		double actual = cal.multiply(4,4);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(6)
+	@Test
+	public void mulMinusFourAndThree() {
+		double expected = -12;
+		double actual = cal.multiply(-4,3);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(7)
+	@Test
+	public void divFiftyFiveAndEleven() {
+		double expected = 5;
+		double actual = cal.divide(55,11);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(8)
+	@Test
+	public void divMinusTwentyFourAndEight() {
+		double expected = -3;
+		double actual = cal.divide(-24,8);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(9)
+	@Test
 	public void divideBy0() {
 		assertThrows(CalculatorException.class, () -> cal.divide(1, 0));
 	}
-
 }
