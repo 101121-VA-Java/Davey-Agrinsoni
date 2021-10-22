@@ -129,4 +129,28 @@ public class CalculatorTest {
 		boolean actual = cal.isPrime(12);
 		assertEquals(expected, actual);
 	}
+	
+	@Order(12)
+	@Test
+	public void checkIfOneIsPrime() {
+		boolean expected = false;
+		boolean actual = cal.isPrime(1);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(13)
+	@Test
+	public void checkIfMinusSevenIsPrime() {
+		boolean expected = false;
+		boolean actual = cal.isPrime(-7);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(14)
+	@Test
+	public void checkIfMinusTwentyFourIsPrime() {
+		boolean expected = false;
+		boolean actual = cal.isPrime(-24);
+		assertEquals(expected, actual);
+	}
 }
