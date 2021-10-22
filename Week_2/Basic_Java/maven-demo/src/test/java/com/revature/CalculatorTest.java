@@ -55,7 +55,7 @@ public class CalculatorTest {
 	@Order(2)
 	@Test
 	public void addMinusTwoAndOne() {
-		double expected = 1;
+		double expected = -1;
 		double actual = cal.add(-2, 1);
 		assertEquals(expected, actual);
 	}
