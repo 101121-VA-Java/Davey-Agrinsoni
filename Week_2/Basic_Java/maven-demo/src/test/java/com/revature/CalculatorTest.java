@@ -113,4 +113,20 @@ public class CalculatorTest {
 	public void divideBy0() {
 		assertThrows(CalculatorException.class, () -> cal.divide(1, 0));
 	}
+	
+	@Order(10)
+	@Test
+	public void checkIfSevenIsPrime() {
+		boolean expected = true;
+		boolean actual = cal.isPrime(7);
+		assertEquals(expected, actual);
+	}
+	
+	@Order(11)
+	@Test
+	public void checkIfTwelveIsPrime() {
+		boolean expected = false;
+		boolean actual = cal.isPrime(12);
+		assertEquals(expected, actual);
+	}
 }
