@@ -1,0 +1,24 @@
+public class Food {    //Declaration of the public class Food
+	public String name; //Declaration of the Public Instance Variable name of Type String.
+	public String type; //Declaration of the Public Instance Variable type of Type String
+
+	public Food(String name, String type) { //Parameterized Contructor for the object Food which takes in two String parameters. One String is name the other is type. 
+		this.name = name; //References the object name (line 2) in the Instance of this constructor and assigns it the input String name.
+		this.type = type; //References the object type (line 3) in the Instance of this constructor and assigns it the input String type.	
+	} // End of the constructor
+
+	public void cook() { //Public method with void return type names cook.
+		if (!name.contains("cooked")) { //Conditional Statement which will return true only if the String object name does not contain the string "cooked".
+			name = "cooked " + name; //Reassigns the contents of name to have cooked concatenated before the previous contents of the object.
+		} //End of the conditional statement.
+	} //End of the cook() method.
+} //End of the class Food.
+
+public class Main { //Declaration of the public class main
+	public static void main(String[] args) { Declaration of the public static main method which returns void and takes in arguments into a String array called args.
+		Food myFood = new Food("potato", "vegetable"); //Declaration of a new object named myFood which calls the constructor Food with the inputs ("potato", "vegetable").
+		myFood.cook(); //Calls the non static method cook on the object myFood. This will check if the name of myFood contains cooked and if it doesn't it will add it before the current name. Therefore myFood.name is now "cooked potato"
+
+		System.out.println(myFood.name); //Will print out a new line to the system which will display the contents of the string myFood.name which is "cooked potato"
+	} //End of the main method.
+} //End of the class main.
