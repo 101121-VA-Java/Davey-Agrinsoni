@@ -1,5 +1,7 @@
 package com.revature;
 
+import com.revature.exceptions.CalculatorException;
+
 public class Calculator {
 
 	/*
@@ -25,16 +27,15 @@ public class Calculator {
 	}
 	
 	public double divide(double x, double y) {
+		if(y == 0) {
+			throw new CalculatorException();
+		}
 		return x / y;
 	}
 	
 	public boolean isPrime(int i) {
 		//Logic 
 		return true;
-	}
-	
-	public void throwException() throws Exception {
-		throw new Exception();
 	}
 	
 	
