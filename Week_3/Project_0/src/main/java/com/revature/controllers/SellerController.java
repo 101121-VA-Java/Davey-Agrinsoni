@@ -17,4 +17,8 @@ public class SellerController {
 		
 		System.out.println("Successfully registered!");
 	}
+	
+	public void loginSeller(Scanner scan) {
+		//TODO logic
+	}
 }

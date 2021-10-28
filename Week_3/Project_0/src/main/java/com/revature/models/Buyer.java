@@ -2,9 +2,9 @@ package com.revature.models;
 
 public class Buyer {
 	
-	private String username;
-	private String password;
-	private String name;
+	protected String username;
+	protected String password;
+	protected String name;
 	
 	public Buyer() {
 		super();

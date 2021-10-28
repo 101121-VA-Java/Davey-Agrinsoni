@@ -1,7 +1,8 @@
 package com.revature.exceptions;
 
-public class UserNotFoundException extends Exception {
-
+public class UsernameAlreadyInUseException extends Exception{
+	
 
 	private static final long serialVersionUID = 1L;
+
 }

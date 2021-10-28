@@ -82,7 +82,4 @@ public class Album {
 			return false;
 		return true;
 	}
-	
-	
-
 }

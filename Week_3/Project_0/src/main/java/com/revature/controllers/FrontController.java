@@ -28,9 +28,9 @@ public class FrontController {
 			switch(input) {
 			case "1": 
 				System.out.println("Would you like to register a Buyer or Seller?");
-				String option = sc.nextLine().toLowerCase();
+				String in1 = sc.nextLine().toLowerCase();
 				
-				switch (option) {
+				switch (in1) {
 				case "buyer":
 					bc.registerBuyer(sc);
 					break;
@@ -41,13 +41,29 @@ public class FrontController {
 					System.out.println("Invalid input");
 					
 				}
+				
 				break;
+			
 			case "2":
 				System.out.println("Are you buying or selling?");
+				String in2 = sc.nextLine().toLowerCase();
+				switch (in2) {
+				case "buying":
+					bc.loginBuyer(sc);
+					break;
+				case "selling":
+					ec.loginSeller(sc);
+					break;
+				default:
+					System.out.println("Invalid input");
 				break;
+				
+				}
+			
 			case "3":
 				run = false;
 				break;
+				
 			default:
 				System.out.println("Invalid input");
 			}
