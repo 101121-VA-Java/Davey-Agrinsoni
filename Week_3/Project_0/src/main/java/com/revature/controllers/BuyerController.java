@@ -47,27 +47,4 @@ public class BuyerController {
 		}
 	}
 	
-	//I'm still not sure if these should go here or be separated into different Service files.????
-	public void enterShop(){
-		//TODO Logic
-	}
-	
-	public double makeOffer(Scanner scan) {
-		//TODO Logic
-		//Maybe this should be void or boolean? which goes into another method
-		return 0.0;
-	}
-	
-	public void viewPurchases(){ //List<Album> possibly a return type?
-		//TODO Logic
-		//List<Album> bag = new ArrayList<>();
-	}
-	
-	public void viewPayments() {
-		//TODO Logic
-	}
-	
-	public void makePayment() {
-		//TODO Logic
-	}
 }
