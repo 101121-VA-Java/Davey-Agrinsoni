@@ -96,9 +96,10 @@ public class BuyerDaoTest {
 	
 //	@Order(8)
 //	@Test
-//	public void existingUsername() throws UsernameAlreadyInUseException{
+//	public void existingUsername() {
 //		bs.addBuyer(new Buyer("Agrin", "Pass", "Davey"));
-//		assertThrows(UsernameAlreadyInUseException.class, bs.addBuyer(new Buyer("Agrin", "Pass", "Davey")));
+//		Buyer temp = new Buyer("Agrin", "Pass", "Davey");
+//		assertThrows(UsernameAlreadyInUseException.class, () -> {bs.addBuyer(temp)});
 //	}
 //	
 //	@Order(9)
