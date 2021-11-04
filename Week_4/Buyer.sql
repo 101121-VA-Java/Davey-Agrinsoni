@@ -17,6 +17,8 @@ insert into Buyers (b_username, b_password, b_name) values ('dpheasey7', '8O3bw8
 insert into Buyers (b_username, b_password, b_name) values ('lpiers8', '1o7VQB', 'L;urette');
 insert into Buyers (b_username, b_password, b_name) values ('aaizikov9', 'fCiIyZLk', 'Aylmer');
 
+delete from Buyers where id = 13;
+
 drop table if exists Sellers;
 create table if not exists Sellers(
 --	id serial primary key,

@@ -46,8 +46,4 @@ public class BuyerList implements BuyerDao{
 		buyers.remove(o);
 		return true;
 	}
-
-
-
 }
-

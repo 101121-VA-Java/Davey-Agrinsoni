@@ -41,7 +41,6 @@ public class FrontController {
 					System.out.println("Invalid input");
 					
 				}
-				
 				break;
 			
 			case "2":
@@ -57,7 +56,6 @@ public class FrontController {
 				default:
 					System.out.println("Invalid input");
 				break;
-				
 				}
 			
 			case "3":

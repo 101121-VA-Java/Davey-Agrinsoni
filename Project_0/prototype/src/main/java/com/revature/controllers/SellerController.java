@@ -13,7 +13,7 @@ public class SellerController {
 		String password = scan.nextLine();
 		System.out.println("Please enter your name: ");
 		String name = scan.nextLine();
-		Seller newBuyer = new Seller(username, password, name, true);
+		Seller newSeller = new Seller(username, password, name, true);
 		
 		System.out.println("Successfully registered!");
 	}

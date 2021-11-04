@@ -9,6 +9,14 @@ public class Seller extends Buyer {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Seller(String username, String password, String name, int id, boolean seller) {
+		super(username, password, name, id);
+		this.seller = seller;
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
 	public Seller(String username, String password, String name, boolean seller) {
 		super(username, password, name);
 		this.seller = seller;
@@ -25,7 +33,8 @@ public class Seller extends Buyer {
 
 	@Override
 	public String toString() {
-		return "Seller [username= " + username + ", password= " + password + ", name= " + name + "]";
+		return "Seller [seller= " + seller + ", username= " + username + ", password= " + password + ", name= " + name
+				+ ", id= " + id + "]";
 	}
 
 	@Override
@@ -49,6 +58,4 @@ public class Seller extends Buyer {
 			return false;
 		return true;
 	}
-	
-
 }

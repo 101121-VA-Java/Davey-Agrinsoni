@@ -5,9 +5,18 @@ public class Buyer {
 	protected String username;
 	protected String password;
 	protected String name;
+	protected int id;
 	
 	public Buyer() {
 		super();
+	}
+
+	public Buyer(String username, String password, String name, int id) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.id = id;
 	}
 
 	public Buyer(String username, String password, String name) {
@@ -41,15 +50,24 @@ public class Buyer {
 		this.name = name;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "Buyer [username=" + username + ", password=" + password + ", name=" + name + "]";
+		return "Buyer [username=" + username + ", password=" + password + ", name=" + name + ", id=" + id + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -65,6 +83,8 @@ public class Buyer {
 		if (getClass() != obj.getClass())
 			return false;
 		Buyer other = (Buyer) obj;
+		if (id != other.id)
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -82,5 +102,4 @@ public class Buyer {
 			return false;
 		return true;
 	}
-
 }
