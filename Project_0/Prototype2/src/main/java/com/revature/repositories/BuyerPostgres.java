@@ -9,15 +9,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.models.Seller;
+import com.revature.models.Buyer;
 import com.revature.util.ConnectionUtil;
 
-public class SellerPostgres implements SellerDao{
+public class BuyerPostgres implements BuyerDao{
 
 	@Override
-	public Seller add(Seller o) {
-		Seller newGuy = o;
-		String sql = "insert into Sellers (s_username, s_password, s_name, s_seller) values (?, ?, ?, ?) returning id;";
+	public Buyer add(Buyer o) {
+		Buyer newGuy = o;
+		String sql = "insert into Buyers (b_username, b_password, b_name) values (?, ?, ?) returning id;";
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -25,7 +25,6 @@ public class SellerPostgres implements SellerDao{
 			ps.setString(1, o.getUsername());
 			ps.setString(2, o.getPassword());
 			ps.setString(3, o.getName());
-			ps.setBoolean(4, o.isSeller());
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -34,40 +33,40 @@ public class SellerPostgres implements SellerDao{
 			}
 		}
 		catch (SQLException | IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Username already taken. Please input another.");
 		}
 		return newGuy;
 	}
 
 	@Override
-	public List<Seller> getAll() {
-		String sql = "select * from Sellers;";
-		List<Seller> Sellers = new ArrayList<>();
+	public List<Buyer> getAll() {
+		String sql = "select * from Buyers;";
+		List<Buyer> Buyers = new ArrayList<>();
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
 			while(rs.next()) {
-				String s_username = rs.getString("s_username");
-				String s_password = rs.getString("s_password");
-				String s_name = rs.getString("s_name");
-				boolean s_seller = rs.getBoolean("s_seller");
+				String b_username = rs.getString("b_username");
+				String b_password = rs.getString("b_password");
+				String b_name = rs.getString("b_name");
 				int id = rs.getInt("id");
 				
-				Seller newSell = new Seller(s_username, s_password, s_name, id, s_seller);
-				Sellers.add(newSell);
+				Buyer newBuy = new Buyer(b_username, b_password, b_name, id);
+				Buyers.add(newBuy);
 			}
-		}catch (IOException | SQLException e) {
+		} catch (IOException | SQLException e) {
 			e.printStackTrace();
 		} 
-		return Sellers;
+		return Buyers;
 	}
 
 	@Override
-	public Seller getByUsername(String username) {
-		String sql = "select * from Sellers where s_username = ? ";
-		Seller sell = null;
+	public Buyer getByUsername(String username) {
+		String sql = "select * from Buyers where b_username = ?;";
+		Buyer buy = null;
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -78,24 +77,24 @@ public class SellerPostgres implements SellerDao{
 			
 			if(rs.next()) {
 				int id = rs.getInt("id");
-				String s_username = rs.getString("s_username");
-				String s_password = rs.getString("s_password");
-				String s_name = rs.getString("s_name");
-				boolean s_seller = rs.getBoolean("s_seller");
+				String b_username = rs.getString("b_username");
+				String b_password = rs.getString("b_password");
+				String b_name = rs.getString("b_name");
 				
-				sell = new Seller(s_username, s_password, s_name, id, s_seller);
+				buy = new Buyer(b_username, b_password, b_name, id);
+				
 			}
 		}
 		catch (IOException | SQLException e) {
 			e.printStackTrace();
 		}
-		return sell;
+		return buy;
 	}
 
 	@Override
-	public boolean remove(Seller o) {
+	public boolean remove(Buyer o) {
 		int rs = -1;
-		String sql = "delete from Sellers where id = ?;";
+		String sql = "delete from Buyers where id = ?;";
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
