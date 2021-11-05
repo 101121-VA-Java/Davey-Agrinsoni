@@ -1,6 +1,7 @@
 package com.revature.driver;
 
 import java.util.List;
+import java.util.Scanner;
 
 import com.revature.controllers.FrontController;
 import com.revature.controllers.ShopController;
@@ -13,9 +14,12 @@ public class Driver {
 	public static void main(String[] args) {
 		BuyerDao bd = new BuyerPostgres();
 		FrontController fc = new FrontController();
-		ShopController sc = new ShopController();
-		fc.run();
-		sc.run();
+		ShopController shc = new ShopController();
+		Scanner sc = new Scanner(System.in);
+		//String input = sc.nextLine();
+		fc.run(sc);
+		shc.run(sc);
+		sc.close();
 //		Run another controller like the ShopController once the FrontController is done running. and so on and so forth 
 
 

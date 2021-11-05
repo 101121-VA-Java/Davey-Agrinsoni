@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 public class FrontController {
 	
-	private Scanner sc;
+//	private Scanner sc;
 	private BuyerController bc;
 	private SellerController ec;
 	
 	public FrontController() {
-		sc = new Scanner(System.in);
+//		sc = new Scanner(System.in);
 		bc = new BuyerController();
 		ec = new SellerController();
 	}
 	
-	public void run() {
+	public void run(Scanner sc) {
 		boolean run = true;
 		
 		while(run) {
@@ -66,7 +66,7 @@ public class FrontController {
 				System.out.println("Invalid input");
 			}
 		}
-		sc.close();
+//		sc.close();
 	}
 	
 }
