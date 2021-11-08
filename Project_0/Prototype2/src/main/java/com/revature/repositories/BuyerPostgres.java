@@ -87,10 +87,36 @@ public class BuyerPostgres implements BuyerDao{
 		}
 		catch (IOException | SQLException e) {
 			e.printStackTrace();
+			//System.out.println();
 		}
 		return buy;
 	}
 
+	public Buyer getById(int id) {
+		String sql = "select * from Buyers where id = ?;";
+		Buyer buy = null;
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				int b_id = rs.getInt("id");
+				String b_username = rs.getString("b_username");
+				String b_password = rs.getString("b_password");
+				String b_name = rs.getString("b_name");
+				
+				buy = new Buyer(b_username, b_password, b_name, b_id);
+			}
+		}
+			catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return buy;
+	}
+	
 	@Override
 	public boolean remove(Buyer o) {
 		int rs = -1;
@@ -98,7 +124,10 @@ public class BuyerPostgres implements BuyerDao{
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, o.getId());
 			rs = ps.executeUpdate();
+			
+			
 		}
 		catch (SQLException | IOException e) {
 			e.printStackTrace();

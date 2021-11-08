@@ -99,7 +99,11 @@ public class SellerPostgres implements SellerDao{
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, o.getId());
 			rs = ps.executeUpdate();
+			
+			
 		}
 		catch (SQLException | IOException e) {
 			e.printStackTrace();

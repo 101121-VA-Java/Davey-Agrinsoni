@@ -88,6 +88,32 @@ public class AlbumPostgres implements AlbumDao{
 		}
 		return album;
 	}
+	
+	@Override
+	public Album getById(int id) {
+		String sql = "select * from Albums where id = ?;";
+		Album album = null;
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				int a_id = rs.getInt("id");
+				String title = rs.getString("title");
+				String artist = rs.getString("artist");
+				double price = rs.getDouble("price");
+				
+				album = new Album(title, artist, price, a_id);
+			}
+		}
+			catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return album;
+	}
 
 	@Override
 	public boolean remove(Album a) {
@@ -96,7 +122,10 @@ public class AlbumPostgres implements AlbumDao{
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, a.getId());
 			rs = ps.executeUpdate();
+			
+			
 		
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();

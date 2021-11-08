@@ -65,3 +65,17 @@ insert into Albums (title, artist, price) values ('With Love... from the Age of 
 insert into Albums (title, artist, price) values ('Tintin and I', 'Andonis Tranmer', 21.91);
 insert into Albums (title, artist, price) values ('No Where No One (Hich Koja Hich Kas)', 'Perkin Antonin', 28.16);
 insert into Albums (title, artist, price) values ('Shogun''s Ninja (Ninja bugeicho momochi sandayu)', 'Vickie Kerslake', 25.19);
+
+delete from Albums where id = 10;
+
+drop table if exists Bags;
+create table if not exists Bags(
+	id serial primary key,
+	buyer_id integer references Buyers(id),
+	title varchar(50),
+	artist varchar(50),
+	price decimal(5,2),
+	paid boolean
+);
+
+insert into Bags ( buyer_id, title, artist, price, paid) values (1,1);

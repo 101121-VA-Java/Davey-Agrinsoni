@@ -13,8 +13,8 @@ public class FrontController {
 		bc = new BuyerController();
 		ec = new SellerController();
 	}
-	
-	public void run(Scanner sc) {
+	int output = 0;
+	public int run(Scanner sc) {
 		boolean run = true;
 		
 		while(run) {
@@ -48,7 +48,7 @@ public class FrontController {
 				String in2 = sc.nextLine().toLowerCase();
 				switch (in2) {
 				case "buying":
-					bc.loginBuyer(sc);
+					output = bc.loginBuyer(sc);
 					break;
 				case "selling":
 					ec.loginSeller(sc);
@@ -66,6 +66,7 @@ public class FrontController {
 				System.out.println("Invalid input");
 			}
 		}
+		return output;
 //		sc.close();
 	}
 	

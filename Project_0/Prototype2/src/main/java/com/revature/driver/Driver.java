@@ -16,9 +16,12 @@ public class Driver {
 		FrontController fc = new FrontController();
 		ShopController shc = new ShopController();
 		Scanner sc = new Scanner(System.in);
-		//String input = sc.nextLine();
-		fc.run(sc);
-		shc.run(sc);
+		int id;
+		//Need to make somekind of conditional to only move on when correct responses are added.
+		
+		id = fc.run(sc);
+		//System.out.println(id);
+		shc.run(sc, id);
 		sc.close();
 //		Run another controller like the ShopController once the FrontController is done running. and so on and so forth 
 
