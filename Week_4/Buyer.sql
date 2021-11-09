@@ -84,3 +84,4 @@ create table if not exists Bags(
 insert into Bags ( buyer_id, title, artist, price, paid) values (1,1);
 delete from Bags where 
 update Bags set paid = true where id = 1;
+select * from Bags where id = 9;
