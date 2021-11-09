@@ -64,7 +64,7 @@ public class SellerController {
 				System.out.println("Incorrect Username/Password. Please try again.");
 			}
 		}
-		return Logger.getId();
+		return 0;
 		}
 
 }

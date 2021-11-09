@@ -13,7 +13,7 @@ public class FrontController {
 		bc = new BuyerController();
 		ec = new SellerController();
 	}
-	int output = 0;
+	int output = -1;
 	public int run(Scanner sc) {
 		boolean run = true;
 		
@@ -51,26 +51,30 @@ public class FrontController {
 			case "2":
 				boolean status = true;
 				while (status) {
-				System.out.println("\nAre you buying or selling?");
-				String in2 = sc.nextLine().toLowerCase();
-				switch (in2) {
-				case "buying":
-					output = bc.loginBuyer(sc);
-					status = false;
+					System.out.println("\nAre you buying or selling?");
+					String in2 = sc.nextLine().toLowerCase();
+					switch (in2) {
+					case "buying":
+						output = bc.loginBuyer(sc);
+						status = false;
+						return output;
+						//break;
+					case "selling":
+						output = ec.loginSeller(sc);
+						status = false;
+						return output;
+						//break;
+					default:
+						System.out.println("\nInvalid input");
 					break;
-				case "selling":
-					ec.loginSeller(sc);
-					status = false;
-					break;
-				default:
-					System.out.println("\nInvalid input");
-				break;
-				}
-				
+					}
+					
 				}
 			case "3":
 				run = false;
-				break;
+				output =-2;
+				return output;
+				//break;
 				
 			default:
 				System.out.println("\nInvalid input");

@@ -14,12 +14,12 @@ public class ShopController {
 	private static AlbumPostgres ap = new AlbumPostgres();
 	private static BagPostgres bagp = new BagPostgres();
 //	private static Scanner sc;
-	private BagController bc;
+	private static BagController bc = new BagController();
 	
 	
 	public ShopController() {
 //		sc = new Scanner(System.in);
-		bc = new BagController();
+		//bc = new BagController();
 	}
 	
 	public void run(Scanner sc, int id) {
