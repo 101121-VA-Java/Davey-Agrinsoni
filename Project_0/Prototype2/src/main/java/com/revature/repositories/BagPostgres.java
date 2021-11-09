@@ -87,6 +87,31 @@ public class BagPostgres {
 		return Bags;
 	}
 	
+	public Bag getById(int id){
+		String sql = "select * from Bags where id = " + id + ";";
+		Bag Bags = null;
+		
+		try (Connection con = ConnectionUtil.getConnectionFromFile()){
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			
+			while (rs.next()) {
+				int buyer_id = rs.getInt("buyer_id");
+				String title = rs.getString("title");
+				String artist = rs.getString("artist");
+				double price = rs.getDouble("price");
+				boolean paid = rs.getBoolean("paid");
+				int b_id = rs.getInt("id");
+				
+				Bags = new Bag(b_id, buyer_id, title, artist, price, paid);
+			}
+		}
+		catch (IOException | SQLException e) {
+			e.printStackTrace();
+		}
+		return Bags;
+	}
+	
 	public boolean remove(int id) {
 		int rs = -1;
 		String sql = "delete from Bags where id = ?;";
@@ -106,6 +131,25 @@ public class BagPostgres {
 		else {
 			return false;
 		}
+	}
+	
+	public boolean checkPaid(int id) {
+		boolean result = false;
+		String sql = "select paid from Bags where id = ?;";
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getBoolean("paid");
+			}
+		}
+		catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	public boolean updatePaid(int id) {

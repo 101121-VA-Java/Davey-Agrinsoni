@@ -25,7 +25,7 @@ public class SellerPostgres implements SellerDao{
 			ps.setString(1, o.getUsername());
 			ps.setString(2, o.getPassword());
 			ps.setString(3, o.getName());
-			ps.setBoolean(4, o.isSeller());
+			ps.setBoolean(4, true);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -34,7 +34,7 @@ public class SellerPostgres implements SellerDao{
 			}
 		}
 		catch (SQLException | IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return newGuy;
 	}

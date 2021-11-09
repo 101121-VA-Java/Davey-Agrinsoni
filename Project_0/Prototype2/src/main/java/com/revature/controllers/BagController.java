@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.Scanner;
 
 import com.revature.models.Album;
+import com.revature.models.Bag;
 import com.revature.repositories.AlbumPostgres;
 import com.revature.repositories.BagPostgres;
 import com.revature.repositories.BuyerPostgres;
@@ -25,35 +26,34 @@ public class BagController {
 	public void payment(int id) {
 		boolean status = true;
 		while(status) {
-		System.out.println("Please input your credit card number:");
+		System.out.println("\nPlease input your credit card number:");
 		String ccn = sc.nextLine();
 		ccn = ccn.replace(" ", "");
-			if (ccn.length() == 16) {
+			if (ccn.length() == 16 && ccn.matches("[^a-zA-Z]+")) {
 				if(bagp.updatePaid(id) == true) {
 					System.out.println("Item is now paid");
 					status = false;
 				}
 				else {
-					System.out.println("Invalid item id");
+					System.out.println("\nInvalid item id");
 				}
 			}
 			else {
-				System.out.println("Invalid credit card number.");
+				System.out.println("\nInvalid credit card number.");
 			}
 			
 		}
 	}
 
 	public void removeFromCart(int id) {
-		boolean status = true;
-		while(status) {
+
 			if(bagp.remove(id) == true) {
 				System.out.println("Item removed from cart");
+				
 			}
 			else {
 				System.out.println("Invalid item id");
 			}
-		}
 	}
 	
 }

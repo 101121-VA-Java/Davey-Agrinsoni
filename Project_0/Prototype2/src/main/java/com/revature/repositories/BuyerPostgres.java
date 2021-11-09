@@ -34,7 +34,7 @@ public class BuyerPostgres implements BuyerDao{
 		}
 		catch (SQLException | IOException e) {
 //			e.printStackTrace();
-			System.out.println("Username already taken. Please input another.");
+			//System.out.println("Username already taken. Please input another.");
 		}
 		return newGuy;
 	}

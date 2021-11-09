@@ -33,7 +33,9 @@ public class BuyerPostgres implements BuyerDao{
 			}
 		}
 		catch (SQLException | IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			newGuy = null;
+			return newGuy;
 		}
 		return newGuy;
 	}

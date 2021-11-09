@@ -27,43 +27,53 @@ public class FrontController {
 			
 			switch(input) {
 			case "1": 
-				System.out.println("Would you like to register a Buyer or Seller?");
+				boolean status1 = true;
+				while (status1) {
+				System.out.println("\nWould you like to register a Buyer or Seller?");
 				String in1 = sc.nextLine().toLowerCase();
 				
 				switch (in1) {
 				case "buyer":
 					bc.registerBuyer(sc);
+					status1 = false;
 					break;
 				case "seller":
 					ec.registerSeller(sc);
+					status1 = false;
 					break;
 				default:
-					System.out.println("Invalid input");
+					System.out.println("\nInvalid input");
 					
 				}
+				}
 				break;
-			
+				
 			case "2":
-				System.out.println("Are you buying or selling?");
+				boolean status = true;
+				while (status) {
+				System.out.println("\nAre you buying or selling?");
 				String in2 = sc.nextLine().toLowerCase();
 				switch (in2) {
 				case "buying":
 					output = bc.loginBuyer(sc);
+					status = false;
 					break;
 				case "selling":
 					ec.loginSeller(sc);
+					status = false;
 					break;
 				default:
-					System.out.println("Invalid input");
+					System.out.println("\nInvalid input");
 				break;
 				}
-			
+				
+				}
 			case "3":
 				run = false;
 				break;
 				
 			default:
-				System.out.println("Invalid input");
+				System.out.println("\nInvalid input");
 			}
 		}
 		return output;
