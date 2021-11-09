@@ -61,6 +61,29 @@ public class AlbumPostgres implements AlbumDao{
 		}
 		return Albums;
 	}
+	
+	public List<Album> getAllSet() {
+		String sql = "select distinct on (title) id, title, artist, price from Albums order by title;";
+		List<Album> Albums = new ArrayList<>();
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			
+			while(rs.next()) {
+				String title = rs.getString("title");
+				String artist = rs.getString("artist");
+				double price = rs.getDouble("price");
+				int id = rs.getInt("id");
+				
+				Album newAlbum = new Album(title, artist, price, id);
+				Albums.add(newAlbum);
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return Albums;
+	}
 
 	@Override
 	public Album getByTitle(String title) {
@@ -124,8 +147,6 @@ public class AlbumPostgres implements AlbumDao{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, a.getId());
 			rs = ps.executeUpdate();
-			
-			
 		
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();

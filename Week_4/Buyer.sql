@@ -68,6 +68,9 @@ insert into Albums (title, artist, price) values ('Shogun''s Ninja (Ninja bugeic
 
 delete from Albums where id = 10;
 
+select * from Albums;
+select distinct on (title) id, title, artist, price from Albums order by title;
+
 drop table if exists Bags;
 create table if not exists Bags(
 	id serial primary key,
@@ -79,3 +82,5 @@ create table if not exists Bags(
 );
 
 insert into Bags ( buyer_id, title, artist, price, paid) values (1,1);
+delete from Bags where 
+update Bags set paid = true where id = 1;

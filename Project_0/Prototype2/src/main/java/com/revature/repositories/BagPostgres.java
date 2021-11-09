@@ -33,7 +33,6 @@ public class BagPostgres {
 		catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public List<Bag> getAll() {
@@ -67,8 +66,6 @@ public class BagPostgres {
 		List<Bag> Bags = new ArrayList<>();
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
-//			PreparedStatement ps = con.prepareStatement(sql);
-//			ps.setInt(1, id);
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
@@ -88,5 +85,47 @@ public class BagPostgres {
 			e.printStackTrace();
 		}
 		return Bags;
+	}
+	
+	public boolean remove(int id) {
+		int rs = -1;
+		String sql = "delete from Bags where id = ?;";
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,id);
+			rs = ps.executeUpdate();
+			
+		}
+		catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		if (rs > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean updatePaid(int id) {
+		int rs = -1;
+		String sql = "update Bags set paid = true where id = ?;";
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,id);
+			rs = ps.executeUpdate();
+			
+		}
+		catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		if (rs > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

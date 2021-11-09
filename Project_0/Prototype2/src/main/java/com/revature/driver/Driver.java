@@ -20,9 +20,11 @@ public class Driver {
 		//Need to make somekind of conditional to only move on when correct responses are added.
 		
 		id = fc.run(sc);
-		//System.out.println(id);
 		shc.run(sc, id);
 		sc.close();
+		
+		
+		
 //		Run another controller like the ShopController once the FrontController is done running. and so on and so forth 
 
 
