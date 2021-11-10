@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.Scanner;
 
 import com.revature.models.Album;
+import com.revature.models.Bag;
 import com.revature.repositories.AlbumPostgres;
 import com.revature.repositories.BagPostgres;
 
@@ -83,6 +84,11 @@ public class InventoryController {
 		if (id > 0) {
 			if(bagp.checkPaid(id) == false) {
 				if(bagp.getById(id)!= null) {
+					Album restock = new Album();
+					Bag remove = new Bag();
+					remove = bagp.getById(id);
+					restock = new Album(remove.getTitle(),remove.getArtist(), remove.getPrice());
+					ap.add(restock);
 					bagp.remove(id);
 					System.out.println("Order removed");
 				}
