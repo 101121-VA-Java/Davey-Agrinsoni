@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 import com.revature.models.Buyer;
 import com.revature.repositories.BuyerPostgres;
+import com.revature.repositories.SellerPostgres;
 
 public class BuyerController {
 	
 	private static BuyerPostgres bp = new BuyerPostgres();
+	private static SellerPostgres sp = new SellerPostgres();
 	
 	public void registerBuyer(Scanner scan) {
 		boolean status = true;
@@ -22,12 +24,14 @@ public class BuyerController {
 			String name = scan.nextLine();
 			name = name.replace(" ", "");
 			Buyer newBuyer = new Buyer(username, password, name);
+			Buyer newBuyer1 = new Buyer(username, password, name);
 			newBuyer = bp.add(newBuyer);
-			if(newBuyer.getId()!=0) {
+			newBuyer1 = sp.addBuy(newBuyer1);
+			if(newBuyer.getId() != 0 && newBuyer1.getId() != 0) {
 				System.out.println("Successfully registered!");
 				status = false;
 			}
-			else if(newBuyer.getId() == 0) {
+			else if(newBuyer.getId() == 0 || newBuyer1.getId() == 0) {
 				System.out.println("Username already taken. Please input another.");
 			}
 		}

@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.models.Buyer;
 import com.revature.models.Seller;
 import com.revature.util.ConnectionUtil;
 
@@ -26,6 +27,30 @@ public class SellerPostgres implements SellerDao{
 			ps.setString(2, o.getPassword());
 			ps.setString(3, o.getName());
 			ps.setBoolean(4, true);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				newGuy.setId(rs.getInt("id"));
+			}
+		}
+		catch (SQLException | IOException e) {
+			//e.printStackTrace();
+		}
+		return newGuy;
+	}
+	
+	public Buyer addBuy(Buyer o) {
+		Buyer newGuy = o;
+		String sql = "insert into Sellers (s_username, s_password, s_name, s_seller) values (?, ?, ?, ?) returning id;";
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, o.getUsername());
+			ps.setString(2, o.getPassword());
+			ps.setString(3, o.getName());
+			ps.setBoolean(4, false);
 			
 			ResultSet rs = ps.executeQuery();
 			
