@@ -172,4 +172,25 @@ public class BagPostgres {
 			return false;
 		}
 	}
+	public boolean updatePrice(double price, int id) {
+		int rs = -1;
+		String sql = "update Bags set price = ? where id = ?;";
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setDouble(1,price);
+			ps.setInt(2, id);
+			rs = ps.executeUpdate();
+			
+		}
+		catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		if (rs > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
