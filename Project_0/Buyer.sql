@@ -50,7 +50,7 @@ create table if not exists Albums(
 );
 
 insert into Albums (title, artist, price) values ('Frederhythm2', 'frederic', 25.11);
-insert into Albums (title, artist, price) values ('何者', 'Polkadot Stingray', 28.16);
+insert into Albums (title, artist, price) values ('Nanimono', 'Polkadot Stingray', 28.16);
 insert into Albums (title, artist, price) values ('Intro Bonito', 'Kero Kero Bonito', 26.35);
 insert into Albums (title, artist, price) values ('SMILE', 'tofubeats', 27.33);
 insert into Albums (title, artist, price) values ('CITY2CITY', 'tofubeats', 23.95);
@@ -59,7 +59,7 @@ insert into Albums (title, artist, price) values ('Slice of Life', 'cute girls d
 insert into Albums (title, artist, price) values ('METROPOLIS.exe', 'ミカヅキBIGWAVE', 21.91);
 insert into Albums (title, artist, price) values ('A Million Miles Away', 'Macross 82-99', 28.16);
 insert into Albums (title, artist, price) values ('Bae', 'Yung Bae', 25.19);
-insert into Albums (title, artist, price) values ('おとぎ', 'Eve', 25.19);
+insert into Albums (title, artist, price) values ('Otogi', 'Eve', 25.19);
 
 
 delete from Albums where id = 10;

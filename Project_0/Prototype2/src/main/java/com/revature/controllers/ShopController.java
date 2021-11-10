@@ -13,14 +13,7 @@ public class ShopController {
 	
 	private static AlbumPostgres ap = new AlbumPostgres();
 	private static BagPostgres bagp = new BagPostgres();
-//	private static Scanner sc;
 	private static BagController bc = new BagController();
-	
-	
-	public ShopController() {
-//		sc = new Scanner(System.in);
-		//bc = new BagController();
-	}
 	
 	public void run(Scanner sc, int id) {
 		boolean run = true;
@@ -30,12 +23,12 @@ public class ShopController {
 			System.out.println("\nPlease select an option: ");
 			System.out.println("1: View inventory");
 			System.out.println("2: View orders");
-			System.out.println("3: Exit");
+			System.out.println("3: Logout");
 			
 			input = sc.nextLine();
 			switch(input) {
 			case "1":
-				System.out.println("Here are our current wares.");
+				System.out.println("\n\nHere are our current wares.");
 				List<Album> albums = ap.getAllSet();			
 				for (Album a : albums) {
 					System.out.println(a);
@@ -47,14 +40,13 @@ public class ShopController {
 					purchase = sc.nextInt();
 					
 					if(purchase == 0) {
-						System.out.println("Thank you! Come again.");
+						System.out.println("\nThank you! Come again.");
 						status = false;
 					}
 					else {
 						if(ap.getById(purchase)!= null) {
 							bc.addToBag(purchase, id);
-							sc.nextLine();
-							status = false;
+
 						}
 						else {
 							System.out.println("Invalid input.");
@@ -140,7 +132,6 @@ public class ShopController {
 				System.out.println("Invalid input");
 			}
 		}
-		//sc.close();
 	}
 
 }

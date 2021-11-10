@@ -11,7 +11,6 @@ public class SellerController {
 	
 	private static SellerPostgres sp = new SellerPostgres();
 	private static BuyerPostgres bp = new BuyerPostgres();
-	private static Scanner sc;
 	
 	public void registerSeller(Scanner scan) {
 		boolean status = true;

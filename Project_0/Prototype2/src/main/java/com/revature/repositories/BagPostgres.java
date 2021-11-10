@@ -28,7 +28,7 @@ public class BagPostgres {
 			ps.setDouble(4, a.getPrice());
 			ps.setBoolean(5, false);
 			
-			boolean rs = ps.execute();
+			ps.execute();
 		}
 		catch (SQLException | IOException e) {
 			e.printStackTrace();

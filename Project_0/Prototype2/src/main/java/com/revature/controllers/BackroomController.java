@@ -12,7 +12,6 @@ public class BackroomController {
 
 	private static AlbumPostgres ap = new AlbumPostgres();
 	private static BagPostgres bagp = new BagPostgres();
-	private static BagController bc = new BagController();
 	private static InventoryController ic = new InventoryController();
 	
 	public void run(Scanner sc) {
@@ -23,7 +22,7 @@ public class BackroomController {
 			System.out.println("\nWelcome to the backroom. What would you like to do?");
 			System.out.println("1: View inventory");
 			System.out.println("2: View orders");
-			System.out.println("3: Exit");
+			System.out.println("3: Logout");
 			
 			input = sc.nextLine();
 			switch(input) {

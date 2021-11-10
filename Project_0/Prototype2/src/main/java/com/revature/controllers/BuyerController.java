@@ -8,7 +8,6 @@ import com.revature.repositories.BuyerPostgres;
 public class BuyerController {
 	
 	private static BuyerPostgres bp = new BuyerPostgres();
-	private static Scanner sc;
 	
 	public void registerBuyer(Scanner scan) {
 		boolean status = true;

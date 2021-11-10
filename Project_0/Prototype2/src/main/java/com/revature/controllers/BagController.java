@@ -3,7 +3,6 @@ package com.revature.controllers;
 import java.util.Scanner;
 
 import com.revature.models.Album;
-import com.revature.models.Bag;
 import com.revature.repositories.AlbumPostgres;
 import com.revature.repositories.BagPostgres;
 import com.revature.repositories.BuyerPostgres;
