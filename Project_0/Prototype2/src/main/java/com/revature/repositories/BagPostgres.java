@@ -62,7 +62,7 @@ public class BagPostgres {
 	}
 
 	public List<Bag> getByUserId(int id){
-		String sql = "select * from Bags where buyer_id = " + id + ";";
+		String sql = "select * from Bags where buyer_id = " + id + "and paid = false;";
 		List<Bag> Bags = new ArrayList<>();
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){

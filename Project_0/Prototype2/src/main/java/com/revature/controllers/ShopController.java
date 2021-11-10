@@ -82,7 +82,6 @@ public class ShopController {
 						}
 						else if(bagp.checkPaid(in2) == false) {
 							bc.payment(in2);
-							bagp.remove(in2);
 							sc.nextLine();
 							status1 = false;
 						}
