@@ -23,12 +23,6 @@ select * from Buyers where b_username = 'Bob';
 
 drop table if exists Sellers;
 create table if not exists Sellers(
---	id serial primary key,
---	s_username varchar(20) references Buyers(b_username),
---	s_password varchar(20) references Buyers(b_password),
---	s_name varchar(20) references Buyers(b_name),
---	s_seller boolean,
---	--primary key(s_username, s_password, s_name)
 	id serial primary key,
 	s_username varchar(20) unique not null,
 	s_password varchar(20) not null,
@@ -55,16 +49,18 @@ create table if not exists Albums(
 	price decimal(5,2) 
 );
 
-insert into Albums (title, artist, price) values ('Kill by Inches', 'Shay Snell', 25.11);
-insert into Albums (title, artist, price) values ('Cuenca Crime, The (Crimen de Cuenca, El)', 'Darrin Treswell', 19.95);
-insert into Albums (title, artist, price) values ('Last Song, The', 'Brendis Rowley', 26.35);
-insert into Albums (title, artist, price) values ('Redacted', 'Shirlee Hruska', 27.33);
-insert into Albums (title, artist, price) values ('12 Dates of Christmas', 'Crosby Kindell', 23.95);
-insert into Albums (title, artist, price) values ('Sorry, Haters', 'Falkner Yerrill', 21.31);
-insert into Albums (title, artist, price) values ('With Love... from the Age of Reason', 'Loutitia McOrkill', 26.46);
-insert into Albums (title, artist, price) values ('Tintin and I', 'Andonis Tranmer', 21.91);
-insert into Albums (title, artist, price) values ('No Where No One (Hich Koja Hich Kas)', 'Perkin Antonin', 28.16);
-insert into Albums (title, artist, price) values ('Shogun''s Ninja (Ninja bugeicho momochi sandayu)', 'Vickie Kerslake', 25.19);
+insert into Albums (title, artist, price) values ('Frederhythm2', 'frederic', 25.11);
+insert into Albums (title, artist, price) values ('何者', 'Polkadot Stingray', 28.16);
+insert into Albums (title, artist, price) values ('Intro Bonito', 'Kero Kero Bonito', 26.35);
+insert into Albums (title, artist, price) values ('SMILE', 'tofubeats', 27.33);
+insert into Albums (title, artist, price) values ('CITY2CITY', 'tofubeats', 23.95);
+insert into Albums (title, artist, price) values ('Moe Moe', 'Moe Shop', 21.31);
+insert into Albums (title, artist, price) values ('Slice of Life', 'cute girls doing cute things', 26.46);
+insert into Albums (title, artist, price) values ('METROPOLIS.exe', 'ミカヅキBIGWAVE', 21.91);
+insert into Albums (title, artist, price) values ('A Million Miles Away', 'Macross 82-99', 28.16);
+insert into Albums (title, artist, price) values ('Bae', 'Yung Bae', 25.19);
+insert into Albums (title, artist, price) values ('おとぎ', 'Eve', 25.19);
+
 
 delete from Albums where id = 10;
 
