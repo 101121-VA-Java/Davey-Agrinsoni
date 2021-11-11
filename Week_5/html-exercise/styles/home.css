@@ -1,0 +1,18 @@
+p{
+    text-indent: 1em;
+    font-size: larger;
+}
+figure{
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+}
+figcaption{
+    font-size: larger;
+    padding: .5em 0 0 0;
+}
+
+#random{
+    border: 2px solid crimson;
+    border-radius: 10%;
+}
