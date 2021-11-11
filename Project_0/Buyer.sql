@@ -17,9 +17,9 @@ insert into Buyers (b_username, b_password, b_name) values ('dpheasey7', '8O3bw8
 insert into Buyers (b_username, b_password, b_name) values ('lpiers8', '1o7VQB', 'L;urette');
 insert into Buyers (b_username, b_password, b_name) values ('aaizikov9', 'fCiIyZLk', 'Aylmer');
 
-delete from Buyers where id = 13;
-
-select * from Buyers where b_username = 'Bob';
+--delete from Buyers where id = 13;
+--
+--select * from Buyers where b_username = 'Bob';
 
 drop table if exists Sellers;
 create table if not exists Sellers(
@@ -56,16 +56,17 @@ insert into Albums (title, artist, price) values ('SMILE', 'tofubeats', 27.33);
 insert into Albums (title, artist, price) values ('CITY2CITY', 'tofubeats', 23.95);
 insert into Albums (title, artist, price) values ('Moe Moe', 'Moe Shop', 21.31);
 insert into Albums (title, artist, price) values ('Slice of Life', 'cute girls doing cute things', 26.46);
-insert into Albums (title, artist, price) values ('METROPOLIS.exe', 'ミカヅキBIGWAVE', 21.91);
+insert into Albums (title, artist, price) values ('METROPOLIS.exe', 'Mikazuki BIGWAVE', 21.91);
 insert into Albums (title, artist, price) values ('A Million Miles Away', 'Macross 82-99', 28.16);
 insert into Albums (title, artist, price) values ('Bae', 'Yung Bae', 25.19);
 insert into Albums (title, artist, price) values ('Otogi', 'Eve', 25.19);
+insert into Albums (title, artist, price) values ('UMA', 'Wednesday Campanella', 25.19);
 
 
-delete from Albums where id = 10;
-
-select * from Albums;
-select distinct on (title) id, title, artist, price from Albums order by title;
+--delete from Albums where id = 10;
+--
+--select * from Albums;
+--select distinct on (title) id, title, artist, price from Albums order by title;
 
 drop table if exists Bags;
 create table if not exists Bags(
@@ -77,7 +78,7 @@ create table if not exists Bags(
 	paid boolean
 );
 
-insert into Bags ( buyer_id, title, artist, price, paid) values (1,1);
-delete from Bags where 
-update Bags set paid = true where id = 1;
-select * from Bags where id = 4;
+--insert into Bags ( buyer_id, title, artist, price, paid) values (1,1);
+--delete from Bags where 
+--update Bags set paid = true where id = 1;
+--select * from Bags where id = 4;
