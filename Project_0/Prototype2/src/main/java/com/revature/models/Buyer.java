@@ -13,12 +13,12 @@ public class Buyer {
 
 	public Buyer(String username, String password, String name, int id) {
 		super();
-		this.username = username;
+		this.username = username;	
 		this.password = password;
 		this.name = name;
 		this.id = id;
 	}
-
+	
 	public Buyer(String username, String password, String name) {
 		super();
 		this.username = username;

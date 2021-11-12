@@ -27,16 +27,16 @@ REIMB_STATUS varchar(10) not null
 
 
 
-drop table if exists ERS_REIMBURSEMENT_TYPE;
-create table if not exists ERS_REIMBURSEMENT_TYPE(
+drop table if exists ERS_REIMBURSEMENT_TYPES;
+create table if not exists ERS_REIMBURSEMENT_TYPES(
 REIMB_TYPE_ID serial primary key not null,
 REIMB_TYPE varchar(10) not null
 );
 
 
 
-drop table if exists ERS_REIMBURSEMENT;
-create table if not exists ERS_REIMBURSEMENT(
+drop table if exists ERS_REIMBURSEMENTS;
+create table if not exists ERS_REIMBURSEMENTS(
 REIMB_ID serial primary key not null,
 REIMB_AMOUNT decimal(7,2) not null,
 REIMB_SUBMITTED timestamp not null,
@@ -46,7 +46,7 @@ REIMB_DESCRIPTION varchar(250), --Could maybe use text
 REIMB_AUTHOR integer references ERS_USERS(ERS_USERS_ID) not null,
 REIMB_RESOLVER integer references ERS_USERS(ERS_USERS_ID) not null,
 REIMB_STATUS_ID integer references ERS_REIMBURSEMENT_STATUS(REIMB_STATUS_ID) not null,
-REMI_TYPE_ID integer references ERS_REIMBURSEMENT_TYPE(REIMB_TYPE_ID) not null
+REMI_TYPE_ID integer references ERS_REIMBURSEMENT_TYPES(REIMB_TYPE_ID) not null
 );
 
 
