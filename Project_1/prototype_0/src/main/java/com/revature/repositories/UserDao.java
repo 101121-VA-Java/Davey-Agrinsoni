@@ -1,5 +1,7 @@
 package com.revature.repositories;
 
-public interface UserDao extends GenericDao {
+import com.revature.models.User;
+
+public interface UserDao extends GenericDao<User> {
 
 }

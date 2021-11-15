@@ -1,3 +1,9 @@
+drop table if exists ERS_REIMBURSEMENTS;
+drop table if exists ERS_USERS;
+drop table if exists ERS_USER_ROLES;
+drop table if exists ERS_REIMBURSEMENT_STATUS;
+drop table if exists ERS_REIMBURSEMENT_TYPES;
+
 drop table if exists ERS_USER_ROLES;
 create table if not exists ERS_USER_ROLES(
 ERS_USER_ROLE_ID serial not null primary key,

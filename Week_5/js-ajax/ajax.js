@@ -47,11 +47,7 @@ function populateData(response) {
     var test = new Image();
     test.src = response.sprites.front_default;
     var test1 = new Image();
-    test1.src = response.sprites.front_shiny;
-    // var pname = document.createElement("String");
-    // pname.setAttribute("type", "string");
-    // pname.setAttribute("value", response.name);
-    // pname = response.name;
+    test1.src = response.sprites.front_shiny;;
 
     let nameTag = document.createElement('h3');
     nameTag.innerHTML = response.name;
