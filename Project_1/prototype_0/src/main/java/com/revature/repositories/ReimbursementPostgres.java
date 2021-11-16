@@ -1,8 +1,19 @@
 package com.revature.repositories;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Reimbursement;
+import com.revature.models.Status;
+import com.revature.models.Type;
+import com.revature.models.User;
+import com.revature.util.ConnectionUtil;
 
 public class ReimbursementPostgres implements ReimbDao{
 
@@ -14,8 +25,32 @@ public class ReimbursementPostgres implements ReimbDao{
 
 	@Override
 	public List<Reimbursement> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from ERS_REIMBURSEMENTS;";
+		List<Reimbursement> Reimbs = new ArrayList<>();
+		
+		try (Connection con = ConnectionUtil.getConnectionFromFile()){
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			
+			while(rs.next()) {
+				int id = rs.getInt("REIMB_ID");
+				double amount = rs.getDouble("REIMB_AMOUNT");
+				Timestamp submitted = rs.getTimestamp("REIMB_SUBMITTED");
+				Timestamp resolved = rs.getTimestamp("REIMB_RESOLVED");
+				String descrip = rs.getString("REIMB_DESCRIPTION");
+				int author = rs.getInt("REIMB_AUTHOR");
+				int resolver = rs.getInt("REIMB_RESOLVER");
+				int statusId = rs.getInt("REIMB_STATUS_ID");
+				int typeId = rs.getInt("REMI_TYPE_ID");
+				
+				
+				Reimbursement newReib = new Reimbursement(id, amount, submitted, resolved, descrip, new User(author), new User(resolver), new Status(statusId), new Type(typeId));
+				Reimbs.add(newReib);
+			}
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+		} 
+		return Reimbs;
 	}
 
 	@Override

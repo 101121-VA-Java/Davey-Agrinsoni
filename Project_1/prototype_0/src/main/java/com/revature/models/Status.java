@@ -11,6 +11,11 @@ public class Status {
 		this.status = status;
 	}
 
+	public Status(int statusId) {
+		super();
+		this.statusId = statusId;
+	}
+
 	public int getStatusId() {
 		return statusId;
 	}
