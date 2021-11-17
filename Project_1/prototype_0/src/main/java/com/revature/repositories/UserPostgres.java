@@ -28,7 +28,7 @@ public class UserPostgres implements UserDao{
 			ps.setString(3, o.getFirstName());
 			ps.setString(4, o.getLastName());
 			ps.setString(5, o.getEmail());
-			ps.setInt(6, o.getUserId());
+			ps.setInt(6, o.getRole().getUserRoleId());
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -45,7 +45,7 @@ public class UserPostgres implements UserDao{
 
 	@Override
 	public List<User> getAll() {
-		String sql = "select * from ERS_USERS;";
+		String sql = "select * from ers_users full join ers_user_roles on user_role_id = ers_user_roles.ers_user_role_id;";
 		List<User> Users = new ArrayList<>();
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
@@ -60,9 +60,10 @@ public class UserPostgres implements UserDao{
 				String lastName = rs.getString("USER_LAST_NAME");
 				String email = rs.getString("USER_EMAIL");
 				int roleId = rs.getInt("USER_ROLE_ID");
+				String role = rs.getString("USER_ROLE");
 				
 				
-				User newUser = new User(id, username, password, firstName, lastName, email, new Role(roleId));
+				User newUser = new User(id, username, password, firstName, lastName, email, new Role(roleId, role));
 				Users.add(newUser);
 			}
 		} catch (IOException | SQLException e) {
@@ -73,7 +74,7 @@ public class UserPostgres implements UserDao{
 
 	@Override
 	public User getById(int id) {
-		String sql = "select * from ERS_USERS where USER_ROLE_ID = ?;";
+		String sql = "select * from ers_users full join ers_user_roles on user_role_id = ers_user_roles.ers_user_role_id where ers_users_id = ?;";
 		User use = null;
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
@@ -90,8 +91,9 @@ public class UserPostgres implements UserDao{
 				String lastName = rs.getString("USER_LAST_NAME");
 				String email = rs.getString("USER_EMAIL");
 				int roleId = rs.getInt("USER_ROLE_ID");
+				String role = rs.getString("USER_ROLE");
 				
-				use = new User(userId, username, password, firstName, lastName, email, new Role(roleId));
+				use = new User(userId, username, password, firstName, lastName, email, new Role(roleId, role));
 				
 			}
 		} 

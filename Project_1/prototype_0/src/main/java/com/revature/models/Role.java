@@ -9,11 +9,6 @@ public class Role {
 		this.userRoleId = userRoleId;
 		this.role = role;
 	}
-
-	public Role(int userRoleId) {
-		super();
-		this.userRoleId = userRoleId;
-	}
 	
 	public int getUserRoleId() {
 		return userRoleId;

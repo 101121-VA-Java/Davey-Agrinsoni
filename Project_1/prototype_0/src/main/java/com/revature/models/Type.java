@@ -11,11 +11,6 @@ public class Type {
 		this.type = type;
 	}
 
-	public Type(int typeId) {
-		super();
-		this.typeId = typeId;
-	}
-
 	public int getTypeId() {
 		return typeId;
 	}

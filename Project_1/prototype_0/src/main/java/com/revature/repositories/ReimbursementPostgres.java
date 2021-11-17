@@ -2,6 +2,7 @@ package com.revature.repositories;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,8 +20,31 @@ public class ReimbursementPostgres implements ReimbDao{
 
 	@Override
 	public Reimbursement add(Reimbursement o) {
-		// TODO Auto-generated method stub
-		return null;
+		Reimbursement newReib = o;
+		String sql = "insert into ERS_REIMBURSEMENTS (REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_RESOLVER, REIMB_STATUS_ID, REMI_TYPE_ID) values (?, ?, ?, ?, ?, ?, ?, ?) returning REIMB_ID;";
+		
+		try(Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setDouble(1, o.getAmount());
+			ps.setTimestamp(2, o.getTimeSubmitted());
+			ps.setTimestamp(3, o.getTimeResolved());
+			ps.setString(4, o.getDescription());
+			ps.setInt(5, o.getReimbAuthor().getUserId());
+			ps.setInt(6, o.getReimbResolver().getUserId());
+			ps.setInt(7, o.getStatusId().getStatusId());
+			ps.setInt(8, o.getTypeId().getTypeId());
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				newReib.setReimbId(rs.getInt("REIMB_ID"));
+			}
+		}
+		catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return newReib;
 	}
 
 	@Override
@@ -44,8 +68,8 @@ public class ReimbursementPostgres implements ReimbDao{
 				int typeId = rs.getInt("REMI_TYPE_ID");
 				
 				
-				Reimbursement newReib = new Reimbursement(id, amount, submitted, resolved, descrip, new User(author), new User(resolver), new Status(statusId), new Type(typeId));
-				Reimbs.add(newReib);
+//				Reimbursement newReib = new Reimbursement(id, amount, submitted, resolved, descrip, new User(author), new User(resolver), new Status(statusId), new Type(typeId));
+
 			}
 		} catch (IOException | SQLException e) {
 			e.printStackTrace();

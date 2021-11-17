@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Reimbursement {
 	
-	private int reimdId;
+	private int reimbId;
 	private double amount;
 	private Timestamp timeSubmitted;
 	private Timestamp timeResolved;
@@ -14,10 +14,10 @@ public class Reimbursement {
 	private Status statusId;
 	private	Type typeId;
 
-	public Reimbursement(int reimdId, double amount, Timestamp timeSubmitted, Timestamp timeResolved,
+	public Reimbursement(int reimbId, double amount, Timestamp timeSubmitted, Timestamp timeResolved,
 			String description, User reimbAuthor, User reimbResolver, Status statusId, Type typeId) {
 		super();
-		this.reimdId = reimdId;
+		this.reimbId = reimbId;
 		this.amount = amount;
 		this.timeSubmitted = timeSubmitted;
 		this.timeResolved = timeResolved;
@@ -41,12 +41,12 @@ public class Reimbursement {
 		this.typeId = typeId;
 	}
 
-	public int getReimdId() {
-		return reimdId;
+	public int getReimbId() {
+		return reimbId;
 	}
 
-	public void setReimdId(int reimdId) {
-		this.reimdId = reimdId;
+	public void setReimbId(int reimdId) {
+		this.reimbId = reimdId;
 	}
 
 	public double getAmount() {
@@ -115,7 +115,7 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [reimdId=" + reimdId + ", amount=" + amount + ", timeSubmitted=" + timeSubmitted
+		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", timeSubmitted=" + timeSubmitted
 				+ ", timeResolved=" + timeResolved + ", description=" + description + ", reimbAuthor=" + reimbAuthor
 				+ ", reimbResolver=" + reimbResolver + ", statusId=" + statusId + ", typeId=" + typeId + "]";
 	}
@@ -129,8 +129,8 @@ public class Reimbursement {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((reimbAuthor == null) ? 0 : reimbAuthor.hashCode());
+		result = prime * result + reimbId;
 		result = prime * result + ((reimbResolver == null) ? 0 : reimbResolver.hashCode());
-		result = prime * result + reimdId;
 		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		result = prime * result + ((timeResolved == null) ? 0 : timeResolved.hashCode());
 		result = prime * result + ((timeSubmitted == null) ? 0 : timeSubmitted.hashCode());
@@ -159,12 +159,12 @@ public class Reimbursement {
 				return false;
 		} else if (!reimbAuthor.equals(other.reimbAuthor))
 			return false;
+		if (reimbId != other.reimbId)
+			return false;
 		if (reimbResolver == null) {
 			if (other.reimbResolver != null)
 				return false;
 		} else if (!reimbResolver.equals(other.reimbResolver))
-			return false;
-		if (reimdId != other.reimdId)
 			return false;
 		if (statusId == null) {
 			if (other.statusId != null)
@@ -188,6 +188,5 @@ public class Reimbursement {
 			return false;
 		return true;
 	}
-
 	
 }
