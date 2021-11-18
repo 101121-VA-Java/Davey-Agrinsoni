@@ -53,7 +53,7 @@ public class UserPostgres implements UserDao{
 			ResultSet rs = s.executeQuery(sql);
 			
 			while(rs.next()) {
-				int id = rs.getInt("USER_ROLE_ID");
+				int id = rs.getInt("ERS_USERS_ID");
 				String username = rs.getString("ERS_USERNAME");
 				String password = rs.getString("ERS_PASSWORD");
 				String firstName = rs.getString("USER_FIRST_NAME");
@@ -84,7 +84,7 @@ public class UserPostgres implements UserDao{
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int userId = rs.getInt("USER_ROLE_ID");
+				int userId = rs.getInt("ERS_USERS_ID");
 				String username = rs.getString("ERS_USERNAME");
 				String password = rs.getString("ERS_PASSWORD");
 				String firstName = rs.getString("USER_FIRST_NAME");
@@ -94,6 +94,37 @@ public class UserPostgres implements UserDao{
 				String role = rs.getString("USER_ROLE");
 				
 				use = new User(userId, username, password, firstName, lastName, email, new Role(roleId, role));
+				
+			}
+		} 
+		catch (IOException | SQLException e) {
+			e.printStackTrace();
+		} 
+		return use;
+	}
+	
+	@Override
+	public User getByUsername(String username) {
+		String sql = "select * from ers_users full join ers_user_roles on user_role_id = ers_user_roles.ers_user_role_id where ERS_USERNAME = ?;";
+		User use = null;
+		
+		try (Connection con = ConnectionUtil.getConnectionFromFile()){
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				int userId = rs.getInt("ERS_USERS_ID");
+				String u_username = rs.getString("ERS_USERNAME");
+				String password = rs.getString("ERS_PASSWORD");
+				String firstName = rs.getString("USER_FIRST_NAME");
+				String lastName = rs.getString("USER_LAST_NAME");
+				String email = rs.getString("USER_EMAIL");
+				int roleId = rs.getInt("USER_ROLE_ID");
+				String role = rs.getString("USER_ROLE");
+				
+				use = new User(userId, u_username, password, firstName, lastName, email, new Role(roleId, role));
 				
 			}
 		} 

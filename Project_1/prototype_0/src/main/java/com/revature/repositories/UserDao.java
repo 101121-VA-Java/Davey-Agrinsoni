@@ -4,4 +4,6 @@ import com.revature.models.User;
 
 public interface UserDao extends GenericDao<User> {
 
+	User getByUsername(String username);
+
 }
