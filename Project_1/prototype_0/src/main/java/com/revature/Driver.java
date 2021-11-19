@@ -48,7 +48,7 @@ public class Driver {
 		List<Reimbursement> Remis = rp.getAll();
 		
 		for(Reimbursement r: Remis) {
-			System.out.println(r);
+			System.out.println(r.getReimbId() + " " + r.getAmount() + " " + r.getTimeSubmitted() + " " + r.getTimeResolved() + " " + r.getDescription() + " " + r.getReimbAuthor().getUsername() + " " + r.getReimbResolver().getUsername() + " " + r.getStatusId().getStatusId() + " " + r.getStatusId().getStatus() + " " + r.getTypeId().getTypeId() + " " + r.getTypeId().getType());
 		}
 		
 		
