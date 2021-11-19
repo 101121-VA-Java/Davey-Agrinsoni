@@ -23,6 +23,7 @@ public class AuthService {
 		
 	}
 	
+
 	public boolean checkPermission(String token, int... allowedRoles) {
 		if(token == null) {
 			return false;

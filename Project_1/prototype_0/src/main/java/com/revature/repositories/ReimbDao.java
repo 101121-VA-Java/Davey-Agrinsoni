@@ -6,8 +6,5 @@ import com.revature.models.Reimbursement;
 
 public interface ReimbDao extends GenericDao<Reimbursement>{
 	
-	List<Reimbursement> getAllByUserId();
-	boolean checkApproved(int id);
-	boolean updateApproval(int id);
-	
+	List<Reimbursement> getAllByUserId(int id);
 }

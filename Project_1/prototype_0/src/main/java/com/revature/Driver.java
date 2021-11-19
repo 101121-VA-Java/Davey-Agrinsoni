@@ -23,8 +23,8 @@ import io.javalin.http.HttpCode;
 public class Driver {
 	// private static UserPostgres up = new UserPostgres();
 	private static ReimbursementPostgres rp = new ReimbursementPostgres();
+
 //	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
 //		Javalin app = Javalin.create((config) -> {
 //			config.enableCorsForAllOrigins();
 //			}).start();
@@ -46,18 +46,14 @@ public class Driver {
 //	}
 	public static void main(String[] args) {
 		List<Reimbursement> Remis = rp.getAll();
-		
-		for(Reimbursement r: Remis) {
-			System.out.println(r.getReimbId() + " Amount: " + r.getAmount() + " Submitted: " + r.getTimeSubmitted() + " Resolved: " + r.getTimeResolved() + " Descrip: " + r.getDescription() + " Author: " + r.getReimbAuthor().getUsername() + " Resolver: " + r.getReimbResolver().getUsername() + " Status Id: " + r.getStatusId().getStatusId() + " Status: " + r.getStatusId().getStatus() + " Type Id: " + r.getTypeId().getTypeId() + " Type: " + r.getTypeId().getType());
+
+		for (Reimbursement r : Remis) {
+			System.out.println(r.getReimbId() + " Amount: " + r.getAmount() + " Submitted: " + r.getTimeSubmitted()
+					+ " Resolved: " + r.getTimeResolved() + " Descrip: " + r.getDescription() + " Author: "
+					+ r.getReimbAuthor().getUsername() + " Resolver: " + r.getReimbResolver().getUsername()
+					+ " Status Id: " + r.getStatusId().getStatusId() + " Status: " + r.getStatusId().getStatus()
+					+ " Type Id: " + r.getTypeId().getTypeId() + " Type: " + r.getTypeId().getType());
 		}
-		
-		
-		
+
 	}
 }
-
-//app.get("users", (ctx) ->{
-//	List<User> list = up.getAll();
-//	ctx.json(list);
-//	ctx.status(HttpCode.OK);
-//});
