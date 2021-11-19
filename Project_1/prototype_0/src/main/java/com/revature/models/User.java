@@ -32,6 +32,11 @@ public class User {
 		this.role = role;
 	}
 
+	public User(String username) {
+		super();
+		this.username = username;
+	}
+
 	public User(int userId) {
 		super();
 		this.userId = userId;

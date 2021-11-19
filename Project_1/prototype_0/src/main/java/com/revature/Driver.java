@@ -9,8 +9,11 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 import static io.javalin.apibuilder.ApiBuilder.post;
 
+import com.revature.controllers.AuthController;
 import com.revature.controllers.UserController;
+import com.revature.models.Reimbursement;
 import com.revature.models.User;
+import com.revature.repositories.ReimbursementPostgres;
 import com.revature.repositories.UserPostgres;
 import com.revature.util.ConnectionUtil;
 
@@ -19,26 +22,38 @@ import io.javalin.http.HttpCode;
 
 public class Driver {
 	// private static UserPostgres up = new UserPostgres();
-
+	private static ReimbursementPostgres rp = new ReimbursementPostgres();
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		Javalin app = Javalin.create((config) -> {
+//			config.enableCorsForAllOrigins();
+//			}).start();
+//		
+//		app.routes(() -> {
+//			path("users", () -> {
+//				get(UserController::getUsers);
+//				path("test", () -> {
+//					get(UserController::getTest);
+//				});
+//				path("{id}", () -> {
+//					get(UserController::getUserById);
+//				});
+//			});
+//			path("auth", () ->{
+//				post(AuthController::login);
+//			});
+//		});
+//	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Javalin app = Javalin.create((config) -> {
-			config.enableCorsForAllOrigins();
-			}).start();
+		List<Reimbursement> Remis = rp.getAll();
 		
-		app.routes(() -> {
-			path("users", () -> {
-				get(UserController::getUsers);
-				path("test", () -> {
-					get(UserController::getTest);
-				});
-				path("{id}", () -> {
-					get(UserController::getUserById);
-				});
-			});
-		});
+		for(Reimbursement r: Remis) {
+			System.out.println(r);
+		}
+		
+		
+		
 	}
-
 }
 
 //app.get("users", (ctx) ->{
