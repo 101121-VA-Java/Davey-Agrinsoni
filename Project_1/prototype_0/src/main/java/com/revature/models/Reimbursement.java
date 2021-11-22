@@ -41,6 +41,29 @@ public class Reimbursement {
 		this.typeId = typeId;
 	}
 
+	public Reimbursement(double amount, Timestamp timeSubmitted, String description, User reimbAuthor, Status statusId,
+			Type typeId) {
+		super();
+		this.amount = amount;
+		this.timeSubmitted = timeSubmitted;
+		this.description = description;
+		this.reimbAuthor = reimbAuthor;
+		this.statusId = statusId;
+		this.typeId = typeId;
+	}
+
+	public Reimbursement(int reimbId, double amount, Timestamp timeSubmitted, String description, User reimbAuthor,
+			Status statusId, Type typeId) {
+		super();
+		this.reimbId = reimbId;
+		this.amount = amount;
+		this.timeSubmitted = timeSubmitted;
+		this.description = description;
+		this.reimbAuthor = reimbAuthor;
+		this.statusId = statusId;
+		this.typeId = typeId;
+	}
+
 	public int getReimbId() {
 		return reimbId;
 	}
