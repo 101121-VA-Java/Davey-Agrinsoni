@@ -36,4 +36,15 @@ public class ReimbService {
 		
 		return rd.add(r);
 	}
+	
+	public boolean updateReib(Reimbursement r){
+		Reimbursement update = rd.getById(r.getReimbId());
+		
+		if(r.getAmount() != 0 && r.getAmount() == update.getAmount()) {
+			update.setAmount(r.getAmount());
+		}
+		
+		return false;
+		
+	}
 }

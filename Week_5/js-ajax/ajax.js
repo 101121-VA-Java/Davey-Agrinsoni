@@ -12,33 +12,47 @@ function getData() {
     let xhr = new XMLHttpRequest();
 
     //2: set a callback function to the readystate change event of that object
-    xhr.onreadystatechange = receiveData;
-
+    //xhr.onreadystatechange = receiveData;
+    xhr.onreadystatechange = function (){
+        if (xhr.readyState === 4) {
+            let dataSpan = document.getElementById('data');
+            dataSpan.innerHTML = '';
+            if (xhr.status >= 200 && xhr.status < 300) {
+                            let response = xhr.response;
+            
+                            // Converting JSON data to JS object
+                            response = JSON.parse(response);
+            
+                            // data processing behavior
+                            document.getElementById("p_name").innerHTML = response.name;
+            }
+        }
+    };
     //3: parameterize / open the request object (set request information)
     xhr.open('GET', `${apiUrl}/${userInput}`);
 
     //4: send the request
     xhr.send();
 
-    function receiveData() {
-        // what to be done once the data is ready
-        if (xhr.readyState === 4) {
-            let dataSpan = document.getElementById('data');
-            dataSpan.innerHTML = '';
-            if (xhr.status >= 200 && xhr.status < 300) {
-                let response = xhr.response;
+    // function receiveData() {
+    //     // what to be done once the data is ready
+    //     if (xhr.readyState === 4) {
+    //         let dataSpan = document.getElementById('data');
+    //         dataSpan.innerHTML = '';
+    //         if (xhr.status >= 200 && xhr.status < 300) {
+    //             let response = xhr.response;
 
-                // Converting JSON data to JS object
-                response = JSON.parse(response);
+    //             // Converting JSON data to JS object
+    //             response = JSON.parse(response);
 
-                // data processing behavior
-                populateData(response);
-            } else{
-                dataSpan.innerHTML = 
-                `<img src="https://lh3.googleusercontent.com/proxy/PwTFjS3gKK23XkUpAs0ZPWDjjABchQ9pjEOdmbPJujuZbJd1t6tZYLwCG1R4vRFMoQgTXdehLcWyWY0hVWNDzC9TwnR1VgMNLNkE4QopBJhst4ZFvKVNoCLZqSom97GfoAAH3q3tBihVMw">`;
-            }
-        }
-    }
+    //             // data processing behavior
+    //             populateData(response);
+    //         } else{
+    //             dataSpan.innerHTML = 
+    //             `<img src="https://lh3.googleusercontent.com/proxy/PwTFjS3gKK23XkUpAs0ZPWDjjABchQ9pjEOdmbPJujuZbJd1t6tZYLwCG1R4vRFMoQgTXdehLcWyWY0hVWNDzC9TwnR1VgMNLNkE4QopBJhst4ZFvKVNoCLZqSom97GfoAAH3q3tBihVMw">`;
+    //         }
+    //     }
+    // }
 }
 
 function populateData(response) {
@@ -54,6 +68,6 @@ function populateData(response) {
 
     document.getElementById("slug").appendChild(test);
     document.getElementById("slug").appendChild(test1);
-    document.getElementById("p_name").appendChild(nameTag);
+    document.getElementById("p_name").appeadChild(nameTag);
     
 }
