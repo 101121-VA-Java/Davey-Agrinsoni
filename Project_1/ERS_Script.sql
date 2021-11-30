@@ -83,7 +83,7 @@ select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTIO
 	left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id 
 	left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id
 	left join ERS_REIMBURSEMENT_STATUS S on R.REIMB_STATUS_ID = S.REIMB_STATUS_ID
-	left join ERS_REIMBURSEMENT_TYPES T on R.REIMB_TYPE_ID = T.REIMB_TYPE_ID where reimb_id = 3;
+	left join ERS_REIMBURSEMENT_TYPES T on R.REIMB_TYPE_ID = T.REIMB_TYPE_ID where R.reimb_status_id = 1;
 	
 
 select * from ers_reimbursements where reimb_id = 1;
