@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
+import com.revature.models.User;
 import com.revature.repositories.ReimbDao;
 import com.revature.repositories.ReimbursementPostgres;
 
@@ -30,21 +31,26 @@ public class ReimbService {
 		return reimbs;
 	}
 	
-	public Reimbursement addReimb(Reimbursement r) {
+	public Reimbursement addReimb(String token, Reimbursement r) {
 		r.setStatusId(new Status(1));
 		r.setTimeSubmitted(new Timestamp(System.currentTimeMillis()));
-		
+		r.setReimbAuthor(new User(Integer.parseInt(token.split(":")[0])));
 		return rd.add(r);
 	}
 	
-	public boolean updateReib(Reimbursement r){
+	public boolean updateReimb(Reimbursement r){
 		Reimbursement update = rd.getById(r.getReimbId());
 		
 		if(r.getAmount() != 0 && r.getAmount() == update.getAmount()) {
 			update.setAmount(r.getAmount());
 		}
 		
-		return false;
+		return rd.update(r);
 		
+	}
+	
+	public List<Reimbursement> getReimbByStatusId(int id) {
+		List<Reimbursement> reimbs = rd.getAllByStatusId(id);
+		return reimbs;
 	}
 }

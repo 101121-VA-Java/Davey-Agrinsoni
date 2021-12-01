@@ -7,4 +7,6 @@ import com.revature.models.Reimbursement;
 public interface ReimbDao extends GenericDao<Reimbursement>{
 	
 	List<Reimbursement> getAllByUserId(int id);
+
+	List<Reimbursement> getAllByStatusId(int id);
 }

@@ -88,7 +88,7 @@ select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTIO
 
 select * from ers_reimbursements where reimb_id = 1;
 	
-select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ers_username Author, M.ers_username Resolver, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type 
+select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ERS_USERS_ID Author_ID ,U.ers_username Author,M.ERS_USERS_ID Resolver_ID, M.ers_username Resolver, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type 
 	from ERS_REIMBURSEMENTS R 
 	left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id 
 	left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id
@@ -98,7 +98,17 @@ select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTIO
 	
 update ERS_REIMBURSEMENTS set REIMB_AMOUNT = 235.65,REIMB_SUBMITTED = '2021-11-19 17:00:25.803', REIMB_RESOLVED = '2021-11-19 17:00:25.803',REIMB_DESCRIPTION = 'Test1', REIMB_AUTHOR = 3, REIMB_RESOLVER = 1, REIMB_STATUS_ID = 2, REIMB_TYPE_ID = 1 where REIMB_ID = 3;	
 	
+select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ERS_USERS_ID Author_ID, U.ers_username Author, M.ers_username Resolver, M.ERS_USERS_ID Resolver_ID, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type 
+	from ERS_REIMBURSEMENTS R 
+	left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id
+	left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id
+	left join ERS_REIMBURSEMENT_STATUS S on R.REIMB_STATUS_ID = S.REIMB_STATUS_ID
+	left join ERS_REIMBURSEMENT_TYPES T on R.REIMB_TYPE_ID = T.REIMB_TYPE_ID where R.reimb_status_id = 1;	
 	
-	
-	
+select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ERS_USERS_ID Author_ID, U.ers_username Author, M.ers_username Resolver, M.ERS_USERS_ID Resolver_ID, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type 
+				from ERS_REIMBURSEMENTS R 
+				left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id
+				left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id
+				left join ERS_REIMBURSEMENT_STATUS S on R.REIMB_STATUS_ID = S.REIMB_STATUS_ID
+				left join ERS_REIMBURSEMENT_TYPES T on R.REIMB_TYPE_ID = T.REIMB_TYPE_ID where R.reimb_status_id = 1	
 

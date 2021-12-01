@@ -46,7 +46,7 @@ public class ReimbursementPostgres implements ReimbDao {
 
 	@Override
 	public List<Reimbursement> getAll() {
-		String sql = "select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ers_username Author, M.ers_username Resolver, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type \r\n"
+		String sql = "select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ERS_USERS_ID Author_ID, U.ers_username Author, M.ers_username Resolver, M.ERS_USERS_ID Resolver_ID, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type \r\n"
 				+ "	from ERS_REIMBURSEMENTS R \r\n" + "	left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id \r\n"
 				+ "	left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id\r\n"
 				+ "	left join ERS_REIMBURSEMENT_STATUS S on R.REIMB_STATUS_ID = S.REIMB_STATUS_ID\r\n"
@@ -63,15 +63,17 @@ public class ReimbursementPostgres implements ReimbDao {
 				Timestamp submitted = rs.getTimestamp("REIMB_SUBMITTED");
 				Timestamp resolved = rs.getTimestamp("REIMB_RESOLVED");
 				String descrip = rs.getString("REIMB_DESCRIPTION");
+				int authorid = rs.getInt("author_id");
 				String author = rs.getString("author");
+				int resolverid = rs.getInt("resolver_id");
 				String resolver = rs.getString("resolver");
 				int statusId = rs.getInt("REIMB_STATUS_ID");
 				String status = rs.getString("Status");
 				int typeId = rs.getInt("REIMB_TYPE_ID");
 				String type = rs.getString("r_type");
 
-				Reimbursement newReib = new Reimbursement(id, amount, submitted, resolved, descrip, new User(author),
-						new User(resolver), new Status(statusId, status), new Type(typeId, type));
+				Reimbursement newReib = new Reimbursement(id, amount, submitted, resolved, descrip, new User(authorid, author),
+						new User(resolverid, resolver), new Status(statusId, status), new Type(typeId, type));
 				Reimbs.add(newReib);
 			}
 		} catch (IOException | SQLException e) {
@@ -82,7 +84,7 @@ public class ReimbursementPostgres implements ReimbDao {
 
 	@Override
 	public Reimbursement getById(int id) {
-		String sql = "select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ers_username Author, M.ers_username Resolver, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type \r\n"
+		String sql = "select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ERS_USERS_ID Author_ID, U.ers_username Author, M.ers_username Resolver, M.ERS_USERS_ID Resolver_ID, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type \r\n"
 				+ "	from ERS_REIMBURSEMENTS R \r\n" + "	left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id \r\n"
 				+ "	left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id\r\n"
 				+ "	left join ERS_REIMBURSEMENT_STATUS S on R.REIMB_STATUS_ID = S.REIMB_STATUS_ID\r\n"
@@ -101,15 +103,17 @@ public class ReimbursementPostgres implements ReimbDao {
 				Timestamp submitted = rs.getTimestamp("REIMB_SUBMITTED");
 				Timestamp resolved = rs.getTimestamp("REIMB_RESOLVED");
 				String descrip = rs.getString("REIMB_DESCRIPTION");
+				int authorid = rs.getInt("author_id");
 				String author = rs.getString("author");
+				int resolverid = rs.getInt("resolver_id");
 				String resolver = rs.getString("resolver");
 				int statusId = rs.getInt("REIMB_STATUS_ID");
 				String status = rs.getString("Status");
 				int typeId = rs.getInt("REIMB_TYPE_ID");
 				String type = rs.getString("r_type");
 
-				remi = new Reimbursement(r_id, amount, submitted, resolved, descrip, new User(author),
-						new User(resolver), new Status(statusId, status), new Type(typeId, type));
+				remi = new Reimbursement(r_id, amount, submitted, resolved, descrip, new User(authorid, author),
+						new User(resolverid, resolver), new Status(statusId, status), new Type(typeId, type));
 			}
 		} catch (IOException | SQLException e) {
 			e.printStackTrace();
@@ -119,7 +123,7 @@ public class ReimbursementPostgres implements ReimbDao {
 
 	@Override
 	public List<Reimbursement> getAllByUserId(int id) {
-		String sql = "select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ers_username Author, M.ers_username Resolver, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type \r\n"
+		String sql = "select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ERS_USERS_ID Author_ID, U.ers_username Author, M.ers_username Resolver, M.ERS_USERS_ID Resolver_ID, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type \r\n"
 				+ "	from ERS_REIMBURSEMENTS R \r\n" + "	left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id \r\n"
 				+ "	left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id\r\n"
 				+ "	left join ERS_REIMBURSEMENT_STATUS S on R.REIMB_STATUS_ID = S.REIMB_STATUS_ID\r\n"
@@ -130,7 +134,7 @@ public class ReimbursementPostgres implements ReimbDao {
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 				int r_id = rs.getInt("REIMB_ID");
@@ -138,15 +142,17 @@ public class ReimbursementPostgres implements ReimbDao {
 				Timestamp submitted = rs.getTimestamp("REIMB_SUBMITTED");
 				Timestamp resolved = rs.getTimestamp("REIMB_RESOLVED");
 				String descrip = rs.getString("REIMB_DESCRIPTION");
+				int authorid = rs.getInt("author_id");
 				String author = rs.getString("author");
+				int resolverid = rs.getInt("resolver_id");
 				String resolver = rs.getString("resolver");
 				int statusId = rs.getInt("REIMB_STATUS_ID");
 				String status = rs.getString("Status");
 				int typeId = rs.getInt("REIMB_TYPE_ID");
 				String type = rs.getString("r_type");
 
-				Reimbursement newReib = new Reimbursement(r_id, amount, submitted, resolved, descrip, new User(author),
-						new User(resolver), new Status(statusId, status), new Type(typeId, type));
+				Reimbursement newReib = new Reimbursement(r_id, amount, submitted, resolved, descrip, new User(authorid, author),
+						new User(resolverid, resolver), new Status(statusId, status), new Type(typeId, type));
 				Reimbs.add(newReib);
 			}
 		} catch (IOException | SQLException e) {
@@ -154,7 +160,46 @@ public class ReimbursementPostgres implements ReimbDao {
 		}
 		return Reimbs;
 	}
+	@Override
+	public List<Reimbursement> getAllByStatusId(int id) {
+		String sql = "select REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, U.ERS_USERS_ID Author_ID, U.ers_username Author, M.ers_username Resolver, M.ERS_USERS_ID Resolver_ID, S.REIMB_STATUS_ID, S.reimb_status Status, T.REIMB_TYPE_ID, T.reimb_type R_Type \r\n"
+				+ "	from ERS_REIMBURSEMENTS R \r\n" + "	left join ERS_USERS U on R.REIMB_AUTHOR = U.ers_users_id \r\n"
+				+ "	left join ERS_USERS M on R.REIMB_RESOLVER = M.ers_users_id\r\n"
+				+ "	left join ERS_REIMBURSEMENT_STATUS S on R.REIMB_STATUS_ID = S.REIMB_STATUS_ID\r\n"
+				+ "	left join ERS_REIMBURSEMENT_TYPES T on R.REIMB_TYPE_ID = T.REIMB_TYPE_ID where R.reimb_status_id = ?";
+		List<Reimbursement> Reimbs = new ArrayList<>();
 
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int r_id = rs.getInt("REIMB_ID");
+				double amount = rs.getDouble("REIMB_AMOUNT");
+				Timestamp submitted = rs.getTimestamp("REIMB_SUBMITTED");
+				Timestamp resolved = rs.getTimestamp("REIMB_RESOLVED");
+				String descrip = rs.getString("REIMB_DESCRIPTION");
+				int authorid = rs.getInt("author_id");
+				String author = rs.getString("author");
+				int resolverid = rs.getInt("resolver_id");
+				String resolver = rs.getString("resolver");
+				int statusId = rs.getInt("REIMB_STATUS_ID");
+				String status = rs.getString("Status");
+				int typeId = rs.getInt("REIMB_TYPE_ID");
+				String type = rs.getString("r_type");
+
+				Reimbursement newReib = new Reimbursement(r_id, amount, submitted, resolved, descrip, new User(authorid, author),
+						new User(resolverid, resolver), new Status(statusId, status), new Type(typeId, type));
+				Reimbs.add(newReib);
+			}
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+		}
+		return Reimbs;
+	}
+	
 	@Override
 	public boolean remove(Reimbursement o) {
 		int rs = -1;

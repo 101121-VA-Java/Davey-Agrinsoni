@@ -11,6 +11,7 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 import static io.javalin.apibuilder.ApiBuilder.put;
 
 import com.revature.controllers.AuthController;
+import com.revature.controllers.ReimbController;
 import com.revature.controllers.UserController;
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
@@ -31,26 +32,49 @@ public class Driver {
 			config.defaultContentType = "application/json";
 		});
 		app.start();
-		
+
 		app.before(ctx -> {
-		    ctx.header("Access-Control-Allow-Headers", "Authorization");
-		    ctx.header("Access-Control-Expose-Headers", "Authorization");
+			ctx.header("Access-Control-Allow-Headers", "Authorization");
+			ctx.header("Access-Control-Expose-Headers", "Authorization");
 		});
-		
+
 		app.routes(() -> {
 			path("users", () -> {
 				get(UserController::getUsers);
 				post(UserController::registerUser);
-				
+
 				path("{id}", () -> {
 					get(UserController::getUserById);
 					put(UserController::updateUserInfo);
-					path("admin", ()->{
+					path("admin", () -> {
 						put(UserController::updateUserInfoAdmin);
 					});
 				});
 			});
-			path("auth", () ->{
+			path("reimbursements", () -> {
+				post(ReimbController::addReimb);
+				get(ReimbController::getReimbs);
+				// use brackets to indicate path param name
+				path("{id}", () -> {
+					get(ReimbController::getReimbById);
+					put(ReimbController::updateReimb);
+//					delete(ReimbController::deleteReimbById);
+
+				});
+				path("author", () -> {
+					path("{id}", () -> {
+						get(ReimbController::getReimbByAuthorId);
+						put(ReimbController::updateReimb);
+					});
+				});
+				path("status", () -> {
+					path("{id}", () -> {
+						get(ReimbController::getReimbByStatusId);
+						put(ReimbController::updateReimb);
+					});
+				});
+			});
+			path("auth", () -> {
 				post(AuthController::login);
 			});
 		});
