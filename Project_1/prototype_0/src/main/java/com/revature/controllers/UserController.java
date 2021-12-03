@@ -55,13 +55,14 @@ public class UserController {
 	}
 	
 	public static void registerUser(Context ctx) {
-		User newUsr = us.addUser(ctx.bodyAsClass(User.class));
+		User newUsr = null;
+		newUsr = us.addUser(ctx.bodyAsClass(User.class));
 		
 		if (newUsr == null) {
 			ctx.status(HttpCode.BAD_REQUEST);
 		}else {
 			ctx.status(HttpCode.CREATED);
-		}
+		} 
 	}
 	
 	public static void updateUserInfo(Context ctx) {

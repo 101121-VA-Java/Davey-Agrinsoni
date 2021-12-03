@@ -4,6 +4,10 @@ public class Role {
 	private int userRoleId;
 	private String role;
 	
+	public Role() {
+		super();
+	}
+
 	public Role(int userRoleId, String role) {
 		super();
 		this.userRoleId = userRoleId;

@@ -10,6 +10,10 @@ public class User {
 	private String email;
 	private Role role;
 	
+	public User() {
+		super();
+	}
+
 	public User(int userId, String username, String password, String firstName, String lastName, String email,
 			Role role) {
 		super();
@@ -30,6 +34,15 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
+	}
+
+	public User(String username, String password, String firstName, String lastName, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
 	}
 
 	public User(int userId, String username) {

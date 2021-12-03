@@ -5,6 +5,10 @@ public class Status {
 	private int statusId;
 	private String status;
 	
+	public Status() {
+		super();
+	}
+
 	public Status(int statusId, String status) {
 		super();
 		this.statusId = statusId;

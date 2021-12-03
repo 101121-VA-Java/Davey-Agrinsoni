@@ -21,7 +21,7 @@ public class ReimbursementPostgres implements ReimbDao {
 	@Override
 	public Reimbursement add(Reimbursement o) {
 		Reimbursement newReib = o;
-		String sql = "insert into ERS_REIMBURSEMENTS (REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) values (?, ?, ?, ?, ?, ?, ?, ?) returning REIMB_ID;";
+		String sql = "insert into ERS_REIMBURSEMENTS (REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) values (?, ?, ?, ?, ?, ?) returning REIMB_ID;";
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = con.prepareStatement(sql);

@@ -14,6 +14,10 @@ public class Reimbursement {
 	private Status statusId;
 	private	Type typeId;
 
+	public Reimbursement() {
+		super();
+	}
+
 	public Reimbursement(int reimbId, double amount, Timestamp timeSubmitted, Timestamp timeResolved,
 			String description, User reimbAuthor, User reimbResolver, Status statusId, Type typeId) {
 		super();

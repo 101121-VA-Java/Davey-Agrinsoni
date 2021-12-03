@@ -36,6 +36,7 @@ public class UserService {
 	}
 	
 	public User addUser(User u) {
+		System.out.println(u);
 		u.setRole(new Role(3, "Employee"));
 		return ud.add(u);
 	}

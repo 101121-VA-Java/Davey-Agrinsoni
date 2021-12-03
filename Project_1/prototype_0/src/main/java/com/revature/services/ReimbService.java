@@ -38,13 +38,10 @@ public class ReimbService {
 		return rd.add(r);
 	}
 	
-	public boolean updateReimb(Reimbursement r){
-		Reimbursement update = rd.getById(r.getReimbId());
-		
-		if(r.getAmount() != 0 && r.getAmount() == update.getAmount()) {
-			update.setAmount(r.getAmount());
-		}
-		
+	public boolean updateReimb(String token, Reimbursement r){
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		r.setTimeResolved(timestamp);
+		r.setReimbResolver(new User(Integer.parseInt(token.split(":")[0])));
 		return rd.update(r);
 		
 	}

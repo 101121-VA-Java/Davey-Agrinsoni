@@ -5,10 +5,19 @@ public class Type {
 	private int typeId;
 	private String type;
 	
+	public Type() {
+		super();
+	}
+
 	public Type(int typeId, String type) {
 		super();
 		this.typeId = typeId;
 		this.type = type;
+	}
+
+	public Type(int typeId) {
+		super();
+		this.typeId = typeId;
 	}
 
 	public int getTypeId() {

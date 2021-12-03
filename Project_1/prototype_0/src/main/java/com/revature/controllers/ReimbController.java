@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Reimbursement;
@@ -49,18 +50,34 @@ public class ReimbController {
 	public static void getReimbByStatusId(Context ctx) {
 		String token = ctx.header("Authorization");
 
-		if (!as.checkPermission(token, 1,2)) {
+		if (!as.checkPermission(token, 1,2,3)) {
 			ctx.status(HttpCode.UNAUTHORIZED);
 			return;
 		}
-
-		int id = Integer.parseInt(ctx.pathParam("id"));
-		List<Reimbursement> r = rs.getReimbByStatusId(id);
-		if (r != null) {
-			ctx.json(r);
-			ctx.status(HttpCode.OK);
+		String authorId = ctx.queryParam("author_id");
+		List<Reimbursement> r = null;
+		List<Reimbursement> statusAndAuthorList = new ArrayList<>();
+		
+		int statusId = Integer.parseInt(ctx.pathParam("id"));
+		
+		if (authorId != null) {
+			int authorNumber = Integer.parseInt(authorId);
+			r = rs.getReimbByUserId(authorNumber);
+			for (Reimbursement statusAndAuthor : r) {
+				if (statusAndAuthor.getStatusId().getStatusId() == statusId) {
+					statusAndAuthorList.add(statusAndAuthor);
+				}
+			}
+			ctx.json(statusAndAuthorList);
+			ctx.status(HttpCode.OK);;
 		} else {
-			ctx.status(HttpCode.NOT_FOUND);
+			r = rs.getReimbByStatusId(statusId);
+			if (r != null) {
+				ctx.json(r);
+				ctx.status(HttpCode.OK);
+			} else {
+				ctx.status(HttpCode.NOT_FOUND);
+			}
 		}
 	}
 	public static void addReimb(Context ctx) {
@@ -88,10 +105,10 @@ public class ReimbController {
 
 		r.setReimbId(id);
 
-		if (rs.updateReimb(r)) {
+		if (rs.updateReimb(token, r)) {
 			ctx.status(HttpCode.OK);
 		} else {
-			ctx.status(400);
+			ctx.status(HttpCode.NOT_FOUND);
 		}
 	}
 	
