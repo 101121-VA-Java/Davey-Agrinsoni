@@ -1,9 +1,12 @@
 package com.revature.models;
 
+import org.springframework.stereotype.Component;
+@Component
 public class Fruityvice {
-
+	
 	private int id;
 	private String name;
+	private Nutrition nutritions;
 //	private List<nutritions> nutritions;
 ////	private int nutrions1;
 ////	private Nutrition nutrions; 
@@ -28,9 +31,17 @@ public class Fruityvice {
 		this.name = name;
 	}
 
+	public Nutrition getNutritions() {
+		return nutritions;
+	}
+
+	public void setNutritions(Nutrition nutritions) {
+		this.nutritions = nutritions;
+	}
+
 	@Override
 	public String toString() {
-		return "Fruityvice [id=" + id + ", name=" + name + "]";
+		return "Fruityvice [id=" + id + ", name=" + name + ", nutritions=" + nutritions + "]";
 	}
 
 	@Override
@@ -39,6 +50,7 @@ public class Fruityvice {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((nutritions == null) ? 0 : nutritions.hashCode());
 		return result;
 	}
 
@@ -57,6 +69,11 @@ public class Fruityvice {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (nutritions == null) {
+			if (other.nutritions != null)
+				return false;
+		} else if (!nutritions.equals(other.nutritions))
 			return false;
 		return true;
 	}

@@ -2,26 +2,23 @@ package com.revature.models;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Component
 public class Nutrition {
-
+	@JsonProperty("carbohydrates")
 	private double carb;
+	@JsonProperty("protein")
 	private double prot;
+	@JsonProperty("fat")
 	private double phat;
+	@JsonProperty("calories")
 	private int calo;
+	@JsonProperty("sugar")
 	private double suga;
 
 	public Nutrition() {
 		super();
-	}
-
-	public Nutrition(double carb, double prot, double phat, int calo, double suga) {
-		super();
-		this.carb = carb;
-		this.prot = prot;
-		this.phat = phat;
-		this.calo = calo;
-		this.suga = suga;
 	}
 
 	public double getCarb() {
@@ -66,7 +63,7 @@ public class Nutrition {
 
 	@Override
 	public String toString() {
-		return "Nutrion [carb=" + carb + ", prot=" + prot + ", phat=" + phat + ", calo=" + calo + ", suga=" + suga
+		return "Nutrition [carb=" + carb + ", prot=" + prot + ", phat=" + phat + ", calo=" + calo + ", suga=" + suga
 				+ "]";
 	}
 

@@ -4,7 +4,6 @@ public class Pokemon {
 
 	private int id;
 	private String name;
-//	private List<sprites> mans;
 	public Pokemon() {
 		super();
 		// TODO Auto-generated constructor stub
