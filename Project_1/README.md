@@ -8,13 +8,12 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 ---
 Technologies Used
 --
-    Java, 
-    JavaScript, 
-    HTML, 
-    CSS, 
-    JDBC, 
+    Java
+    JavaScript
+    HTML
+    CSS
+    JDBC
     PostgreSQL
-    
 ---
 Features
 --
